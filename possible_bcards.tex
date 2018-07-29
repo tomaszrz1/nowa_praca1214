@@ -1,0 +1,285 @@
+% !TeX encoding = UTF-8
+% !TeX spellcheck = en_GB
+\documentclass[final,a4paper,12pt]{amsart}
+\setlength{\emergencystretch}{2em}
+
+\usepackage[marginratio=1:1]{geometry}
+\date{\today}
+
+\usepackage[T1]{fontenc}
+\usepackage{ae,aecompl}
+\usepackage[utf8]{inputenc}
+\usepackage[british]{babel}
+\usepackage{csquotes}
+\usepackage[draft=false]{hyperref}
+\usepackage{xcolor}
+%\usepackage{imakeidx}
+%\usepackage[notref,notcite]{showkeys}
+%\usepackage{showidx}
+\usepackage[modulo,pagewise,mathlines]{lineno}
+\linenumbers
+%\usepackage[amsmath,amsthm]{ntheorem}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{tikz-cd}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{thmtools}
+\usepackage{thm-restate}
+\usepackage{mathrsfs}
+\usepackage{enumitem}
+\usepackage{mathtools}
+%\usepackage[backend=biber,
+%url=false,
+%isbn=false,
+%backref=true,
+%citestyle=alphabetic,
+%bibstyle=alphabetic,
+%autocite=inline,
+%sorting=ydnt,]{biblatex}
+%
+%\addbibresource{bibliography.bib}
+
+
+
+\newcommand{\fC}{{\mathfrak C}}
+\newcommand{\cM}{{\mathcal M}}
+\newcommand{\cN}{{\mathcal N}}
+\newcommand{\cB}{{\mathcal B}}
+\newcommand{\bN}{{\mathbf{N}}}
+\newcommand{\bR}{{\mathbf{R}}}
+\newcommand{\bZ}{{\mathbf{Z}}}
+\newcommand{\bQ}{{\mathbf{Q}}}
+\newcommand{\cA}{{\mathcal A}}
+\newcommand{\topo}{{\mathrm{top}}}
+\newcommand\Lasc{{\mathrm{L}}}
+\newcommand\KP{{\mathrm{KP}}}
+\newcommand\Sh{{\mathrm{Sh}}}
+\newcommand{\restr}{\mathord{\upharpoonright}}
+\newcommand{\EZ}{\mathrel{ { {\mathbf E}_0 } } }
+\newcommand{\Er}{\mathrel{E}}
+\newcommand{\Fr}{\mathrel{F}}
+\newcommand{\lang}{{\mathcal L}}
+\newcommand{\catg}{{\mathcal C}}
+\newcommand{\powerset}{{\mathcal P}}
+\newcommand{\liff}{\mathrel{\leftrightarrow}}
+\newcommand{\limplies}{\mathrel{\rightarrow}}
+\newcommand{\bigland}{\bigwedge}
+\newcommand{\biglor}{\bigvee}
+\newcommand{\proves}{\vdash}
+\newcommand{\Rr}{\mathrel{R}}
+\newcommand{\Fin}{\mathrm{Fin}}
+\newcommand{\an}{\mathrm{an}}
+\DeclareMathOperator{\SO}{{SO}}
+\DeclareMathOperator{\GL}{{GL}}
+\DeclareMathOperator{\st}{{st}}
+\DeclareMathOperator{\cl}{{cl}}
+\DeclareMathOperator{\tp}{{tp}}
+\DeclareMathOperator{\acl}{{acl}}
+\DeclareMathOperator{\dcl}{{dcl}}
+\DeclareMathOperator{\Th}{{Th}}
+\DeclareMathOperator{\Gal}{{Gal}}
+\DeclareMathOperator{\Baire}{{Baire}}
+\DeclareMathOperator{\Id}{{Id}}
+\DeclareMathOperator{\id}{{id}}
+\DeclareMathOperator{\Aut}{{Aut}}
+\DeclareMathOperator{\Homeo}{{Homeo}}
+\DeclareMathOperator{\Autf}{{Aut\mkern 0.5\thinmuskip f}}
+\DeclareMathOperator{\CLO}{{CLO}}
+\DeclareMathOperator{\dom}{{dom}}
+\DeclareMathOperator{\Core}{{Core}}
+\DeclareMathOperator{\Stab}{{Stab}}
+\DeclareMathOperator{\SL}{{SL}}
+\DeclareMathOperator{\Souslin}{{\mathcal A}}
+\let\unlhd\trianglelefteq
+
+
+
+
+\newtheorem{mainthm}{Main Theorem}
+\renewcommand*{\themainthm}{\Alph{mainthm}}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{ques}[thm]{Question}
+\newtheorem{problem}[thm]{Problem}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{fct}[thm]{Fact}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{qu}[thm]{Question}
+\newtheorem{con}[thm]{Conjecture}
+
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\theoremstyle{definition}
+\newtheorem{dfn}[thm]{Definition}
+\newtheorem*{sbclm}{Subclaim}
+\newtheorem*{clm*}{Claim}
+\newtheorem{ex}[thm]{Example}
+\newcounter{claimcounter}[thm]
+\newenvironment{clm}{\stepcounter{claimcounter}{\noindent {\textbf{Claim}} \theclaimcounter:}}{}
+\newenvironment{clmproof}[1][\proofname]{\proof[#1]\renewcommand{\qedsymbol}{$\square$(claim)}}{\endproof}
+\newenvironment{sbclmproof}[1][\proofname]{\proof[#1]\renewcommand{\qedsymbol}{$\square$(subclaim)}}{\endproof}
+
+\newcommand{\xqed}[1]{%
+	\leavevmode\unskip\penalty9999 \hbox{}\nobreak\hfill
+	\quad\hbox{\ensuremath{#1}}}
+
+\let\Gamma\varGamma
+\let\Delta\varDelta
+\let\Theta\varTheta
+\let\Lambda\varLambda
+\let\Xi\varXi
+\let\Pi\varPi
+\let\Sigma\varSigma
+\let\Upsilon\varUpsilon
+\let\Phi\varPhi
+\let\Psi\varPsi
+\let\Omega\varOmega
+\let\phi\varphi
+
+
+
+
+\begin{document}
+	
+	\address{
+		Instytut Matematyczny, Uniwersytet Wrocławski,
+		pl. Grunwaldzki 2/4, 50-384 Wrocław, Poland
+	}
+	
+	
+	
+	\author{Tomasz Rzepecki}
+	\email[T.\ Rzepecki]{tomasz.rzepecki@math.uni.wroc.pl}
+	
+	
+	
+	\section{Borel cardinalities}
+	We've established that it makes sense to talk about the Borel cardinality of a bounded, Borel equivalence relation on $\fC$.
+	
+	\begin{con}[Conjecture 2, \cite{KPS13}]
+		Any non-smooth $K_\sigma$ equivalence relation can be represented, for some theory $T$, by some $\equiv_{\Lasc}\restr_X$, where $X$ is a single $\equiv_{\KP}$-class.
+	\end{con}
+	
+	\begin{prop}
+		Suppose $S_\alpha(\emptyset)$ is uncountable (this is always the case for countably infinite $\alpha$) and that $M$ is a countable atomic model (this happens, for example, if we take for $T$ the theory of real closed fields, for $M$ the algebraic reals and $\alpha=1$). Then for any Borel equivalence relation $F$ on some uncountable standard Borel space $X$, there is a bounded equivalence relation $E$ such that $E^M\sim_B F$ (even more: $S(M)/E^M$ is isomorphic to $X/F$).
+	\end{prop}
+	\begin{proof}
+		$S_\alpha(\emptyset)$ is an uncountable Polish space. Therefore, there is a Borel isomorphism $\Phi\colon S_\alpha(\emptyset)\to X$. We can then define $\mathrel{E}$ as 
+		\[
+		a\mathrel{E}b\iff \Phi(\tp(a/\emptyset)) \mathrel{F} \Phi(\tp(b/\emptyset))
+		\]
+		Since $M$ is atomic, each complete $\emptyset$-type extends uniquely to an $M$-type, so $\Phi$ induces an isomorphism between $S(M)/E^M$ and $X/F$.
+	\end{proof}
+	
+	\begin{thm}
+		Let $I\unlhd 2^{\bf N}$ be a Borel ideal. Then the equivalence relation $E_I$ can be realised (in the sense of Borel cardinality) as a relation $E$ which refines $\equiv$, is refined by $\equiv_{\KP}$, is orbital, and is only defined on a single complete type.
+	\end{thm}
+	
+	\begin{prop}
+		Any Borel cardinality can be realised by an equivalence relation $E$ which is refined by $\equiv$.
+	\end{prop}
+	
+	\begin{prop}
+		Suppose $E_n$ are bounded,  Borel equivalence relations on some type-definable sets $X_n$ (in some theories $T_n$, possibly all distinct). Then there is $E\sim_B \prod_nE_n$ which is also bounded, Borel equivalence relation in some theory $T$.
+		
+		Furthermore, the following properties are preserved by $E$ (i.e.\, if all $E_n$ have this property, then so does $E$):
+		\begin{itemize}
+			\item
+			refining or being refined by $\equiv$
+			\item
+			refining or being refined by $\equiv_{\KP}$
+			\item
+			being orbital
+			\item
+			being orbital on types
+			\item
+			being defined on a single complete type
+		\end{itemize}
+	\end{prop}
+	
+	\begin{prop}
+		Suppose $E_n$ are Borel equivalence relations are realised by some bounded, Borel equivalence relations on single types $p_n$ (in some theories $T_n$, possibly all distinct). Then there is $E\sim_B\prod_nE_n/\Fin$ which is also a bounded, Borel equivalence relation on a single type $p$ in some theory $T$.
+		
+		Furthermore, the following properties are preserved by $E$ (i.e.\, if all $E_n$ have this property, then so does $E$):
+		\begin{itemize}
+			\item
+			being refined by $\equiv_{\KP}$
+			\item
+			being orbital
+		\end{itemize}
+	\end{prop}
+	
+	\begin{prop}
+		Suppose $E_n$ are the restrictions to a single ${\equiv_{\KP}}$-class of bounded, Borel equivalence relations (in some theories $T_n$, possibly all distinct). Then there is an $E\sim\prod_nE_n/\Fin$ which is also realised as a restriction to a single ${\equiv_{\KP}}$-class of a bounded, Borel equivalence relation in some theory $T$.
+		
+		Furthermore, if $E_n$ are restrictions of orbital equivalence relations, then so is $E$
+	\end{prop}
+	
+	(Countable unions, countable intersections!)
+	
+	The picture we get is as follows.
+	
+	For arbitrary bounded and Borel equivalence relations $E$ we have:
+	\begin{itemize}
+		\item
+		If we allow $E$ to be refined by $\equiv$, then $E$ can have any Borel cardinality at all.
+		\item
+		If $E$ equal to (a restriction to a type-definable set of) $\equiv$ or $\equiv_{\KP}$, then $E$ must be smooth (and can be any smooth relation can be obtained this way).
+		\item
+		The class of possible Borel cardinalities for $E$ defined on a single type and refined $\equiv_{\KP}$ contains (equivalence classes of) all smooth equivalence relations, all $E_I$ for Borel ideals $I$ (like ${\bf E}_0,{\bf E}_1,{\bf E}_2,{\bf E}_3$), and it is closed under countable products and Fubini products (i.e.\ $\prod_n/\Fin$).
+		\item
+		The class of possible Borel cardinalities for restriction of $E$ of a single $\equiv_{\KP}$-class contains no smooth class except the trivial one, but it does contain $\ell^\infty$ and ${\bf E}_0$, and it is closed under countable products and Fubini products.
+		\item
+		If $E$ is the restriction of ${\equiv_{\Lasc}}$ to a type-definable set, then $E$ may be smooth (in which case it is equal to $\equiv_{\KP}$), or it may have the Borel cardinality of either ${\bf E}_0$ or $\ell^\infty$, and it is not known if it can have any others, and the same is true about the Borel cardinality of the restriction of $E$ to a single ${\equiv_{\KP}}$ class.
+		\item
+		All points above, except for the first one, remain true if we add the assumption that $E$ is orbital. It is not known whether there is some Borel cardinality which can only be attained by a non-orbital $E$.
+	\end{itemize}
+	
+	\begin{qu}
+		Suppose $E$ is a bounded, Borel equivalence relation defined on a (set of realisations of) a single complete type $p$. If $E$ refines $\equiv_{\KP}$ and it is not smooth, then is the Borel cardinality of $E$ the same as the Borel cardinality of $E$ restricted to a single ${\equiv_{\KP}}$ class?
+	\end{qu}
+	
+	
+	
+	\section{Every quotient of a Polish group is a strong type}
+	\begin{prop}
+		Suppose $G$ is a pro-(definable group) in $T$, while $H\leq G$ is invariant of bounded index.
+		
+		Then there is a reduct $T'$ of $T$, a complete $\emptyset$-type $p$ (in $T'$) and strong type $E$ on $p$, such that for every small $M\models T'$ we have an $M$-type-definable bijection $f\colon G\to p(\fC')$ such that $f^{-1}[E]$ is the left coset equivalence relation of $H$ on $G$.
+	\end{prop}
+	
+	\begin{fct}
+		Every compact Hausdorff group is a pro-(compact lie group), i.e.\ it is the inverse limit of a surjective system of compact Lie groups. Moreover, we can choose the system in such a way that the connecting maps are analytic.
+	\end{fct}
+	
+	\begin{dfn}
+		A \emph{restricted analytic function} is a function $f\colon [0,1]^n\to \bR$ which is analytic on an open set containing $[0,1]^n$.\xqed{\lozenge}
+	\end{dfn}
+	
+	\begin{fct}
+		Suppose $T$ has NIP and $G$ is a definable group. Then for any small $A$ we have $G^{0}_A=G^{0}_\emptyset$, $G^{00}_A=G^{00}_\emptyset$ and $G^{000}_A=G^{000}_\emptyset$. In particular, $G^0, G^{00}$ and $G^{000}$ exist.
+	\end{fct}
+	
+		
+	\begin{fct}
+		The theory $T=\Th(\bR_{\an})$ of the real field expanded with all restricted analytic functions is o-minimal. In particular, it has NIP.
+	\end{fct}
+
+	\begin{fct}
+		Suppose $G$ is group definable, which is definable in an o-minimal expansion of the real field. Suppose in addition that $G(\bR)=G_\bR$ is a compact Lie group. Then $G/G^{00}=G_{\bR}$.
+	\end{fct}
+	
+	\begin{prop}
+		Let $T=\Th(\bR_{\an})$ be the theory of the real field expanded with all restricted analytic functions. Then for every compact Hausdorff group $G_{\bR}$, there is a pro-(definable group) $G$ such that $G/G^{00}$ is isomorphic to $G_{\bR}$ (as a topological group).
+	\end{prop}
+	\begin{proof}
+		Choose a compact Hausdorff group $G_{\bR}$ and express it as the inverse limit $\varprojlim_i G_{\bR,i}$, where $G_{\bR,i}$ is a compact Lie group. Then clearly $G_{\bR,i}$ is definable in $\bR$, and the connecting maps are analytic, and let $G=\varprojlim_i G_i$. Then $G/G^{00}=\varprojlim_i G_i/G_i^{00}=\varprojlim_i G_{\bR,i}=G_{\bR}$.
+	\end{proof}
+%	\printbibliography
+\end{document}
+

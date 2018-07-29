@@ -1,0 +1,175 @@
+% !TeX encoding = UTF-8
+% !TeX spellcheck = en_GB
+\documentclass[final,a4paper,12pt]{amsart}
+\setlength{\emergencystretch}{2em}
+
+\usepackage[marginratio=1:1]{geometry}
+\date{\today}
+
+\usepackage[T1]{fontenc}
+\usepackage{ae,aecompl}
+\usepackage[utf8]{inputenc}
+\usepackage[british]{babel}
+\usepackage{csquotes}
+\usepackage[draft=false]{hyperref}
+\usepackage{xcolor}
+%\usepackage{imakeidx}
+%\usepackage[notref,notcite]{showkeys}
+%\usepackage{showidx}
+\usepackage[modulo,pagewise,mathlines]{lineno}
+\linenumbers
+%\usepackage[amsmath,amsthm]{ntheorem}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{tikz-cd}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{thmtools}
+\usepackage{thm-restate}
+\usepackage{mathrsfs}
+\usepackage{enumitem}
+\usepackage{mathtools}
+%\usepackage[backend=biber,
+%url=false,
+%isbn=false,
+%backref=true,
+%citestyle=alphabetic,
+%bibstyle=alphabetic,
+%autocite=inline,
+%sorting=ydnt,]{biblatex}
+%
+%\addbibresource{bibliography.bib}
+
+
+
+\newcommand{\fC}{{\mathfrak C}}
+\newcommand{\cM}{{\mathcal M}}
+\newcommand{\cN}{{\mathcal N}}
+\newcommand{\cB}{{\mathcal B}}
+\newcommand{\bN}{{\mathbf{N}}}
+\newcommand{\bR}{{\mathbf{R}}}
+\newcommand{\bZ}{{\mathbf{Z}}}
+\newcommand{\bQ}{{\mathbf{Q}}}
+\newcommand{\cA}{{\mathcal A}}
+\newcommand{\topo}{{\mathrm{top}}}
+\newcommand\Lasc{{\mathrm{L}}}
+\newcommand\KP{{\mathrm{KP}}}
+\newcommand\Sh{{\mathrm{Sh}}}
+\newcommand{\restr}{\mathord{\upharpoonright}}
+\newcommand{\EZ}{\mathrel{ { {\mathbf E}_0 } } }
+\newcommand{\Er}{\mathrel{E}}
+\newcommand{\Fr}{\mathrel{F}}
+\newcommand{\lang}{{\mathcal L}}
+\newcommand{\catg}{{\mathcal C}}
+\newcommand{\powerset}{{\mathcal P}}
+\newcommand{\liff}{\mathrel{\leftrightarrow}}
+\newcommand{\limplies}{\mathrel{\rightarrow}}
+\newcommand{\bigland}{\bigwedge}
+\newcommand{\biglor}{\bigvee}
+\newcommand{\proves}{\vdash}
+\newcommand{\Rr}{\mathrel{R}}
+\newcommand{\Fin}{\mathrm{Fin}}
+\newcommand{\an}{\mathrm{an}}
+\DeclareMathOperator{\SO}{{SO}}
+\DeclareMathOperator{\GL}{{GL}}
+\DeclareMathOperator{\st}{{st}}
+\DeclareMathOperator{\cl}{{cl}}
+\DeclareMathOperator{\tp}{{tp}}
+\DeclareMathOperator{\acl}{{acl}}
+\DeclareMathOperator{\dcl}{{dcl}}
+\DeclareMathOperator{\Th}{{Th}}
+\DeclareMathOperator{\Gal}{{Gal}}
+\DeclareMathOperator{\Baire}{{Baire}}
+\DeclareMathOperator{\Id}{{Id}}
+\DeclareMathOperator{\id}{{id}}
+\DeclareMathOperator{\Aut}{{Aut}}
+\DeclareMathOperator{\Homeo}{{Homeo}}
+\DeclareMathOperator{\Autf}{{Aut\mkern 0.5\thinmuskip f}}
+\DeclareMathOperator{\CLO}{{CLO}}
+\DeclareMathOperator{\dom}{{dom}}
+\DeclareMathOperator{\Core}{{Core}}
+\DeclareMathOperator{\Stab}{{Stab}}
+\DeclareMathOperator{\SL}{{SL}}
+\DeclareMathOperator{\Souslin}{{\mathcal A}}
+\let\unlhd\trianglelefteq
+
+
+
+
+\newtheorem{mainthm}{Main Theorem}
+\renewcommand*{\themainthm}{\Alph{mainthm}}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{ques}[thm]{Question}
+\newtheorem{problem}[thm]{Problem}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{fct}[thm]{Fact}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{qu}[thm]{Question}
+\newtheorem{con}[thm]{Conjecture}
+
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\theoremstyle{definition}
+\newtheorem{dfn}[thm]{Definition}
+\newtheorem*{sbclm}{Subclaim}
+\newtheorem*{clm*}{Claim}
+\newtheorem{ex}[thm]{Example}
+\newcounter{claimcounter}[thm]
+\newenvironment{clm}{\stepcounter{claimcounter}{\noindent {\textbf{Claim}} \theclaimcounter:}}{}
+\newenvironment{clmproof}[1][\proofname]{\proof[#1]\renewcommand{\qedsymbol}{$\square$(claim)}}{\endproof}
+\newenvironment{sbclmproof}[1][\proofname]{\proof[#1]\renewcommand{\qedsymbol}{$\square$(subclaim)}}{\endproof}
+
+\newcommand{\xqed}[1]{%
+	\leavevmode\unskip\penalty9999 \hbox{}\nobreak\hfill
+	\quad\hbox{\ensuremath{#1}}}
+
+\let\Gamma\varGamma
+\let\Delta\varDelta
+\let\Theta\varTheta
+\let\Lambda\varLambda
+\let\Xi\varXi
+\let\Pi\varPi
+\let\Sigma\varSigma
+\let\Upsilon\varUpsilon
+\let\Phi\varPhi
+\let\Psi\varPsi
+\let\Omega\varOmega
+\let\phi\varphi
+
+
+
+
+\begin{document}
+	
+	\address{
+		Instytut Matematyczny, Uniwersytet Wrocławski,
+		pl. Grunwaldzki 2/4, 50-384 Wrocław, Poland
+	}
+	
+	
+	
+	\author{Tomasz Rzepecki}
+	\email[T.\ Rzepecki]{tomasz.rzepecki@math.uni.wroc.pl}
+	
+	
+	\section{Randomization preserves NIP}
+	
+	\begin{prop}
+		Let $T$ be an arbitrary theory (in continuous logic), and let $M$ be an $\aleph_0$-saturated model of $T$.
+		
+		Then $T$ has NIP if and only if for every formula $\varphi(x,y)$, the family $\{\varphi(x,c)\mid c\in M \}$ does not contain an $\ell^1$-sequence (with respect to the supremum norm).
+	\end{prop}
+	
+	\begin{cor}
+		Suppose $T$ is arbitrary, while $M$ is $\aleph_0$-saturated and $\aleph_0$-strongly homogeneous.
+		
+		Then $T$ has NIP if and only if $(\Aut(M),S(M))$ is a tame dynamical system.
+	\end{cor}
+%	\printbibliography
+\end{document}
+

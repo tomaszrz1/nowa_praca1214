@@ -1,0 +1,335 @@
+% !TeX encoding = UTF-8
+% !TeX spellcheck = en_GB
+%% !TeX program = lualatex
+\documentclass[final,a4paper,12pt,reqno]{amsart}
+\setlength{\emergencystretch}{2em}
+
+\usepackage[marginratio=1:1]{geometry}
+\date{\today}
+
+\usepackage[T1]{fontenc}
+\usepackage{ae,aecompl}
+\usepackage[activate={true,nocompatibility},final,tracking=true,kerning=true,spacing=true,stretch=10,shrink=10]{microtype}
+%\usepackage[activate={true,nocompatibility},spacing=false,final,stretch=10,shrink=10]{microtype}
+\SetTracking{encoding=*, shape=sc}{50}
+\microtypecontext{spacing=nonfrench}
+\usepackage[utf8]{inputenc}
+\usepackage[british]{babel}
+\usepackage{csquotes}
+\usepackage[draft=false]{hyperref}
+%\usepackage{imakeidx}
+%\usepackage[notref,notcite]{showkeys}
+%\usepackage{showidx}
+%\usepackage[modulo,pagewise,mathlines]{lineno}
+%\linenumbers
+%\usepackage[amsmath,amsthm]{ntheorem}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{tikz-cd}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{thmtools}
+\usepackage{thm-restate}
+\usepackage{mathrsfs}
+\usepackage{enumitem}
+\usepackage{mathtools}
+%\usepackage[backend=biber,
+%url=false,
+%isbn=false,
+%backref=true,
+%citestyle=alphabetic,
+%bibstyle=alphabetic,
+%autocite=inline,
+%sorting=ydnt,]{biblatex}
+%
+%\addbibresource{bibliography.bib}
+\hypersetup{
+	colorlinks,
+	linkcolor={red!50!black},
+	citecolor={blue!50!black},
+	urlcolor={blue!80!black}
+}
+
+
+
+\newcommand{\fC}{{\mathfrak C}}
+\newcommand{\cM}{{\mathcal M}}
+\newcommand{\cN}{{\mathcal N}}
+\newcommand{\cB}{{\mathcal B}}
+\newcommand{\bN}{{\mathbf{N}}}
+\newcommand{\bR}{{\mathbf{R}}}
+\newcommand{\bZ}{{\mathbf{Z}}}
+\newcommand{\bQ}{{\mathbf{Q}}}
+\newcommand{\cA}{{\mathcal A}}
+\newcommand{\topo}{{\mathrm{top}}}
+\newcommand\Lasc{{\mathrm{L}}}
+\newcommand\KP{{\mathrm{KP}}}
+\newcommand\Sh{{\mathrm{Sh}}}
+\newcommand{\restr}{\mathord{\upharpoonright}}
+\newcommand{\EZ}{\mathrel{ { {\mathbf E}_0 } } }
+\newcommand{\Er}{\mathrel{E}}
+\newcommand{\Fr}{\mathrel{F}}
+\newcommand{\lang}{{\mathcal L}}
+\newcommand{\catg}{{\mathcal C}}
+\newcommand{\powerset}{{\mathcal P}}
+\newcommand{\liff}{\mathrel{\leftrightarrow}}
+\newcommand{\limplies}{\mathrel{\rightarrow}}
+\newcommand{\bigland}{\bigwedge}
+\newcommand{\biglor}{\bigvee}
+\newcommand{\proves}{\vdash}
+\newcommand{\Rr}{\mathrel{R}}
+\newcommand{\Fin}{\mathrm{Fin}}
+\newcommand{\an}{\mathrm{an}}
+\newcommand{\eq}{\mathrm{eq}}
+\newcommand{\meet}{\mathop{\wedge}}
+\newcommand{\bigmeet}{\bigwedge}
+\DeclareMathOperator{\SO}{{SO}}
+\DeclareMathOperator{\GL}{{GL}}
+\DeclareMathOperator{\st}{{st}}
+\DeclareMathOperator{\cl}{{cl}}
+\DeclareMathOperator{\tp}{{tp}}
+\DeclareMathOperator{\acl}{{acl}}
+\DeclareMathOperator{\dcl}{{dcl}}
+\DeclareMathOperator{\Th}{{Th}}
+\DeclareMathOperator{\Gal}{{Gal}}
+\DeclareMathOperator{\Baire}{{Baire}}
+\DeclareMathOperator{\Id}{{Id}}
+\DeclareMathOperator{\id}{{id}}
+\DeclareMathOperator{\Aut}{{Aut}}
+\DeclareMathOperator{\Homeo}{{Homeo}}
+\DeclareMathOperator{\Autf}{{Aut\mkern 0.5\thinmuskip f}}
+\DeclareMathOperator{\CLO}{{CLO}}
+\DeclareMathOperator{\dom}{{dom}}
+\DeclareMathOperator{\Core}{{Core}}
+\DeclareMathOperator{\Stab}{{Stab}}
+\DeclareMathOperator{\SL}{{SL}}
+\DeclareMathOperator{\Souslin}{{\mathcal A}}
+\let\unlhd\trianglelefteq
+
+
+
+
+\newtheorem{mainthm}{Main Theorem}
+\renewcommand*{\themainthm}{\Alph{mainthm}}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{ques}[thm]{Question}
+\newtheorem{problem}[thm]{Problem}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{fct}[thm]{Fact}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{qu}[thm]{Question}
+\newtheorem{con}[thm]{Conjecture}
+
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\theoremstyle{definition}
+\newtheorem{dfn}[thm]{Definition}
+\newtheorem*{sbclm}{Subclaim}
+\newtheorem*{clm*}{Claim}
+\newtheorem{ex}[thm]{Example}
+\newcounter{claimcounter}[thm]
+\newenvironment{clm}{\stepcounter{claimcounter}{\noindent {\textbf{Claim}} \theclaimcounter:}}{}
+\newenvironment{clmproof}[1][\proofname]{\proof[#1]\renewcommand{\qedsymbol}{$\square$(claim)}}{\endproof}
+\newenvironment{sbclmproof}[1][\proofname]{\proof[#1]\renewcommand{\qedsymbol}{$\square$(subclaim)}}{\endproof}
+
+\newcommand{\xqed}[1]{%
+	\leavevmode\unskip\penalty9999 \hbox{}\nobreak\hfill
+	\quad\hbox{\ensuremath{#1}}}
+
+
+\usepackage{isomath}
+
+\usepackage{upgreek}
+\let \leq \leqslant
+\let \geq \geqslant
+
+\title{\textsc{Meet trees stuff}}
+
+\begin{document}
+	\maketitle
+	\section{some observations about trees}
+	$\mathcal O=\{x_0,x_1,\ldots\}$ is an orbit of a finite partial automorphism $p$ of a $\meet$-tree (so $x_j=p^j(x_0)$).
+	
+	\begin{rem}
+		\label{rem:iterations}
+		If for some $i,j$ we have $x_i\geq x_j$, then whenever (for some $k\in \bZ$) $x_{i+k},x_{j+k}$ exist, then $x_{i+k}\geq x_{j+k}$.
+		
+		In particular, if $x_{2j-i}$ exists, then $x_j\geq x_{2j-i}$, so $x_i\geq x_{2j-i}$, and likewise, if $x_{j+k(j-i)}$ exists, then $x_i\geq x_{j+k(j-i)}$.\xqed{\lozenge}
+	\end{rem}
+	
+	\begin{prop}
+		\label{prop:meet_of_tree}
+		Suppose (in a $\meet$-tree) $x_1\leq x_2$ and $y\not> x_1$. Then $x_1\meet y=x_2\meet y$.
+	\end{prop}
+	\begin{proof}
+		Trivially, $x_1\meet y\leq x_2\meet y$.
+		
+		On the other hand, $x_2\meet y<x_2$, so $x_2\meet y\not \perp x_1$. Furthermore, since $y\geq x_2\meet y$ and $y\not> x_1$, we have $x_2\meet y\not > x_1$. Thus $x_2\meet y\leq x_1$, whence $x_2\meet y\leq x_1\meet y$.
+	\end{proof}
+	
+	
+	
+	The following proposition describes the ``spiral'' behaviour of orbits.
+	\begin{prop}
+		\label{prop:spirals}
+		Suppose $n>0$ is minimal such that $x_0$ is comparable to $x_n$. Then:
+		\begin{enumerate}
+			\item
+			$x_i$ is comparable to $x_j$ if and only if $i\equiv j\pmod n$,
+			\item
+			if $i_1\equiv i_2\not\equiv j\pmod n$, then $x_{i_1}\meet x_{j}=x_{i_2}\meet x_j$.
+		\end{enumerate}
+	\end{prop}
+	\begin{proof}
+		(1): $\Leftarrow$ is an easy consequence of Remark~\ref{rem:iterations}. For $\Rightarrow$, suppose this is not true. Then we can choose $i\not \equiv j \pmod n$ such that $x_i$ is comparable to $x_j$. Choose $i,j$ such that $\lvert i-j\rvert$ is minimal.
+		
+		Note that we may assume without loss of generality that $i<j$, and then furthermore, that $i=0$. Thus $j$ is the smallest number such that $n\nmid j$ and $x_j$ is comparable to $x_0$. Necessarily (by choice of $n$), $j>n$.
+		
+		Notice also that $x_n$ and $x_j$ cannot be comparable: otherwise, $x_0$ and $x_{j-n}$ are comparable, which contradicts minimality of $j$.
+		
+		Now, we have one of the three:
+		\begin{itemize}
+			\item
+			$x_n\geq x_0$, in which case $x_{n+j}\geq x_n,x_j$,
+			\item 
+			$x_n<x_0$ and $x_0\leq x_j$, or
+			\item 
+			$x_n,x_j<x_0$.
+		\end{itemize}
+		In all three cases, $x_n$ and $x_j$ are comparable, a contradiction.
+		
+		(2): Since $x_0$ and $x_n$ are comparable, it follows that $x_{i_1}$ and $x_{i_2}$ are also comparable. Suppose without loss of generality that $x_{i_1}\geq x_{i_2}$.
+		
+		Since of course $x_{i_1}\meet x_j\leq x_{i_1}$, we have that $x_{i_2}$ and $x_{i_1}\meet x_j$ are comparable.
+		
+		If $x_{i_2}\geq x_{i_1}\meet x_j$, then $x_{i_2}\meet x_j\geq x_{i_1}\meet x_j$, and since $x_{i_1}\geq x_{i_2}$, we also have $x_{i_1}\meet x_j \geq x_{i_2}\meet x_j$, so we are done.
+		
+		Otherwise, $x_{i_2}<x_{i_2}\meet x_j$, so in particular, $x_{i_2}<x_j$, which contradicts (1), so we are done.
+	\end{proof}
+	
+	
+	\begin{prop}
+		\label{prop:meet_of_two}
+		Suppose that neither $x_0\meet x_1<x_1\meet x_2$ nor $x_0\meet x_1>x_1\meet x_0$.
+		
+		Then $x_0\meet x_1$ is a fixed point, and whenever $x_{i+1}$ exists, $x_0\meet x_1=x_i\meet x_{i+1}$. Moreover, $x_0\meet x_1=\bigmeet \mathcal O$, i.e.\ it is the smallest element of the semilattice generated by $\mathcal O$.
+	\end{prop}
+	\begin{proof}
+		Note that $x_0\meet x_1,x_1\meet x_2\leq x_1$, so they are comparable. By the assumption, $x_0\meet x_1=x_1\meet x_2$. It follows immediately that $x_0\meet x_1$ is a fixed point, so for every $i$, $x_i\meet x_{i+1}=x_0\meet x_1$ (as long as $x_{i+1}$ exists).
+		
+		But then for $i>1$ we have $x_i\meet x_0\meet x_1=x_i\meet x_i\meet x_{i-1}=x_i\meet x_{i-1}=x_0\meet x_1$. Since $\bigwedge \mathcal O=\bigwedge_{i=0}^m x_i$, the conclusion follows.
+	\end{proof}
+	
+	For each $j,k\in \bN$, put $y^k_j:=x_j\meet x_{j+k}$. Notice that $p^l(y^k_j)=y^k_{j+l}$.
+	\begin{prop}
+		\label{prop:minimal_n_divides_k}
+		Suppose $n>0$ is minimal such that $y^k_0$ is comparable to $y^k_{n}$ (in particular, suppose that such $n$ exists). Then $n$ divides $k$.
+	\end{prop}
+	\begin{proof}
+%		Suppose $y^k_0\geq y^k_n$ (the other case is analogous?).
+		We have the following claim.
+		
+		\begin{clm*}
+			$y^k_0$ and $y^k_k$ are comparable.
+		\end{clm*}
+		
+		Using Claim, by Proposition~\ref{prop:spirals}(1) applied to $y^k_i$ with $i=0$ and $j=k$, we conclude that $0\equiv k\pmod n$, i.e.\ $n$ divides $k$. Thus, we only need to prove the claim.
+		
+		\begin{clmproof}[Proof of claim]
+			Suppose that $y^k_0\geq y^k_n$ (the other case is analogous). Then  we have:
+			\begin{equation}
+				\label{eq:from_y^k_n}
+				y^k_0\geq y^k_n\geq y^k_{2n}\geq \ldots \geq y^k_{kn}.
+			\end{equation}
+			
+			Note that immediately by definition of $y^k_j$, $x_k\geq y^k_0,y^k_k$. Thus $y^k_0$ and $y^k_k$ are comparable. As in the preceding paragraph, we conclude that if $y^k_0<y^k_k$, then $y^k_0<y^k_{nk}=y^k_{kn}$. This contradicts \eqref{eq:from_y^k_n}, so we must have $y^k_0\geq y^k_k$.
+		\end{clmproof}
+	\end{proof}
+	
+	\begin{prop}
+		\label{prop:comb_minimal_n}
+		Suppose $k\in \bN$ is minimal such that for some $n>0$, $y^k_0$ is comparable but not equal to $y^k_n$. Suppose in addition that $k>0$.
+		
+		Then $k$ divides every such $n$, and the minimal $n$ is equal to $k$.
+	\end{prop}
+	\begin{proof}
+		We have the following claim.
+		
+		\begin{clm*}
+			If $n=1$, then $k=1$.
+		\end{clm*}
+		\begin{proof}
+			The proof is by contraposition. Suppose that $k>1$. Then for every $n$, $y^1_0=x_0\meet x_1$ is either equal or incomparable to $y^1_n=x_n\meet x_{n+1}$.
+			
+			In particular, $y^1_0$ is neither greater nor smaller than $y^1_1$. By Proposition~\ref{prop:meet_of_two}, it follows that $y^1_0\meet y^1_1=y^1_1\meet y^1_2$. In particular, $n>1$.
+%			Since $x_1\geq y^1_0,y^1_1$, it follows that $y^1_0=y^1_1$. Note that this implies $x_0\meet x_1$ is the meet of all $x_i$-s, and a fixed point.
+%			
+%			It follows that $y^k_0\meet y^k_1=x_0\meet x_1\meet x_k\meet x_{k+1}=x_0\meet x_1$. In particular, if $y^k_0$ and $y^k_1$ are comparable, then the smaller one is equal to $x_0\meet x_1$, which is a fixed point. Since $y^k_0$ and $y^k_1$ are in the same orbit, it follows that $y^k_0=y^k_1$, so $n>1$.
+		\end{proof}
+		
+		Suppose for now that $n$ is minimal. Then by Proposition~\ref{prop:minimal_n_divides_k}, $n$ divides $k$. Put $k':=k/n$, consider the partial automorphism $p^n$, and put $x'_j=x_{nj}$, and for $y'_j=x_{nj}\meet x_{nj+k}=x'_j\meet x'_{j+k'}$.
+		
+		Then we have that $y'_0=x'_0\meet x'_{k'}=x_0\meet x_{k}$ is comparable but not equal to $y'_1=x'_1\meet \meet x'_{1+k'}=x_n\meet x_{n+k}$. Moreover, by minimality of $k$, it follows that $k'$ is minimal such that for some $n'$ the meets $x'_{0}\meet x'_{k'}$ and $x'_{n'}\meet x'_{n'+k'}$ are comparable but not equal. By Claim it follows that $k'=1$, i.e.\ the minimal $n$ is $k$.
+		
+		The case of arbitrary $n$ follows from Proposition~\ref{prop:spirals}(1) (applied to $y^k_i$).
+	\end{proof}
+	
+	\begin{dfn}
+		Let $\mathcal O=\{x_0,\ldots, x_m\}$ be the orbit or a finite partial automorphism $p$ (such that $p(x_i)=x_{i+1}$).
+		
+		Then:
+		\begin{itemize}
+			\item
+			if for some positive integer $n\leq m$ we have that $x_0=x_n$, and $n$ is minimal, then we say that $\mathcal O$ is a \emph{loop of length $n$};
+			\item 
+			if for some positive integer $n$ we have that $x_0$ is comparable (but not equal) to $x_n$, and $n$ is minimal, then we say that $\mathcal O$ is a \emph{spiral of length $n$};
+			\item
+			if for some positive integer $k\leq m/2$, we have that $x_0$ and $x_k$ are incomparable, but $x_0\meet x_k$ is not equal to $x_k\meet x_{2k}$, and $k$ is minimal, then we say that $\mathcal O$ is a \emph{comb loop of lenth $k$};
+			\item
+			otherwise (if $\mathcal O$ is not a loop, a spiral, nor a comb loop), we say that $\mathcal O$ is a \emph{pseudoloop}.
+		\end{itemize}
+	\end{dfn}
+	
+	\begin{rem}
+		Note that if $x_0,x_1,\ldots, x_m$ is of comb type $k$, then $y^k_0,y^k_1,\ldots, y^k_{m-k}$ is of spiral type $k$.
+		
+		Conversely, it is not hard to see that if $y_0,\ldots$ is and orbit of $p$ of spiral type $k$, then for some $\bar p\supseteq p$, there is a $\bar p$-orbit $x_0,\ldots$ of comb type $k$, such that $y_j=x_j\meet x_{j+k}$.\xqed{\lozenge}
+	\end{rem}
+	
+	\begin{prop}
+		\label{prop:finite_spiral_not_comb}
+		If $\mathcal O$ is of finite or spiral type, then for every $k$, either $x_0\meet x_k=x_k\meet x_{2k}$ or $x_0$ and $x_k$ are comparable.
+	\end{prop}
+	\begin{proof}
+		Suppose that $\mathcal O$ is of finite or spiral type $n$. If $n$ divides $k$, then trivially $x_0$ and $x_{nk}$ are comparable. Otherwise, by Proposition~\ref{prop:spirals}, we have that $x_0\meet x_k=x_{kn}\meet x_{kn+k}$.
+		
+		But if $x_0\meet x_k<x_k\meet x_{2k}$, then $x_0\meet x_k<x_{kn}\meet x_{kn+k}$, and likewise if $x_0\meet x_k>x_k\meet x_{2k}$, then $x_0\meet x_k>x_{kn}\meet x_{kn+k}$. In both cases, we have a contradiction. But since $x_0\meet x_k, x_k\meet x_{2k}\leq x_k$, they are compatible, so they must be equal.
+	\end{proof}
+	
+	
+	Note that Proposition~\ref{prop:finite_spiral_not_comb} implies that orbits of finite or spiral type are not of comb type.
+	
+	\begin{rem}
+		Proposition~\ref{prop:comb_minimal_n} implies that $\mathcal O$ is of comb type $k$ if and only if $k$ is minimal such that for some $n$, the meets $x_0\meet x_k$ and $x_{n}\meet x_{n+k}$ are comparable.\xqed{\lozenge}
+	\end{rem}
+	
+	\begin{conj}
+		If $\mathcal O$ is of open type, then it can be extended to an orbit of any other type.
+		
+		If $\mathcal O$ is not of open type, then it is determined.
+	\end{conj}
+	
+	\section{Psuedoloops analysis}
+	In this section, we have a blanket assumption that $\mathcal O$ is a loop or a pseudoloop, i.e.\ $\mathcal O$ is an antichain and for every $k$, we have $x_0\meet x_k=x_k\meet x_{2k}$.
+	\begin{prop}
+		Suppose $\mathcal O$ is a pseudoloop and $k,n$ are positive integers.
+		
+		Then $x_0\meet x_k\leq x_0\meet x_{kn}$.
+	\end{prop}
+\end{document}
+

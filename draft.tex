@@ -1,93 +1,132 @@
 % !TeX encoding = UTF-8
 % !TeX spellcheck = en_GB
 \documentclass[final,a4paper,12pt]{amsart}
+\setlength{\emergencystretch}{2em}
 
-
+\usepackage[marginratio=1:1]{geometry}
+\date{\today}
 
 \usepackage[T1]{fontenc}
+\usepackage{ae,aecompl}
 \usepackage[utf8]{inputenc}
-\usepackage{amssymb}
-\usepackage{enumitem}
-%\usepackage{mathtools}
-%\usepackage[math-style=ISO]{unicode-math}
+\usepackage[british]{babel}
+\usepackage{csquotes}
 \usepackage[draft=false]{hyperref}
 \usepackage{xcolor}
-\hypersetup{
-	colorlinks,
-	linkcolor={red!50!black},
-	citecolor={blue!50!black},
-	urlcolor={blue!80!black}
-}
-\usepackage{cleveref}
-\usepackage{url}
-\usepackage{datetime}
-\usepackage[backend=biber,
-url=false,
-isbn=false,
-backref=true,
-citestyle=alphabetic,
-bibstyle=alphabetic,
-autocite=inline,
-sorting=ydnt,]{biblatex}
-\usepackage[english]{babel}
+%\usepackage{imakeidx}
+%\usepackage[notref,notcite]{showkeys}
+%\usepackage{showidx}
+\usepackage[modulo,pagewise,mathlines]{lineno}
+\linenumbers
+%\usepackage[amsmath,amsthm]{ntheorem}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{tikz-cd}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{thmtools}
+\usepackage{thm-restate}
+\usepackage{mathrsfs}
+\usepackage{enumitem}
+\usepackage{mathtools}
+%\usepackage[backend=biber,
+%url=false,
+%isbn=false,
+%backref=true,
+%citestyle=alphabetic,
+%bibstyle=alphabetic,
+%autocite=inline,
+%sorting=ydnt,]{biblatex}
+%
+%\addbibresource{bibliography.bib}
 
-\addbibresource{bibliography.bib}
 
 
-
-\newtheorem{thm}{Theorem}[section]
-\newtheorem{lem}[thm]{Lemma}
-\newtheorem{cor}[thm]{Corollary}
-\newtheorem{prop}[thm]{Proposition}
-\newtheorem{fct}[thm]{Fact}
-\newtheorem{con}{Conjecture}
-\newtheorem{qu}[con]{Question}
-\theoremstyle{remark}
-\newtheorem{rem}[thm]{Remark}
-\newtheorem{rems}[thm]{Remarks}
-\theoremstyle{definition}
-\newtheorem{dfn}[thm]{Definition}
-\newtheorem{clm}{Claim}
-\newenvironment{clmproof}[1][\proofname]{\proof[#1]\renewcommand{\qedsymbol}{$\square$(claim)}}{\endproof}
-\newtheorem{ex}[thm]{Example}
-\newcommand{\mathilde}[1]{\wt{\mathcal #1}}
-\DeclareMathOperator{\supp}{supp}
-\DeclareMathOperator{\Spec}{{Spec}}
-\DeclareMathOperator{\rng}{{rng}}
-\DeclareMathOperator{\Stab}{{Stab}}
-\DeclareMathOperator{\Th}{{Th}}
-\DeclareMathOperator{\tp}{{tp}}
-\DeclareMathOperator{\Aut}{{Aut}}
-\DeclareMathOperator{\dcl}{{dcl}}
-\DeclareMathOperator{\Tr}{{Tr}}
-\DeclareMathOperator{\Core}{{Core}}
-\DeclareMathOperator{\Diag}{{Diag}}
-\DeclareMathOperator{\id}{id}
-\DeclareMathOperator{\Gal}{{Gal}}
-\DeclareMathOperator{\SL}{{SL}}
-\newcommand{\mon}{\mathfrak C}
-\newcommand{\proves}{\mathrel{\vdash}}
+\newcommand{\fC}{{\mathfrak C}}
+\newcommand{\cM}{{\mathcal M}}
+\newcommand{\cN}{{\mathcal N}}
+\newcommand{\cB}{{\mathcal B}}
+\newcommand{\bN}{{\mathbf{N}}}
+\newcommand{\bR}{{\mathbf{R}}}
+\newcommand{\bZ}{{\mathbf{Z}}}
+\newcommand{\bQ}{{\mathbf{Q}}}
+\newcommand{\cA}{{\mathcal A}}
+\newcommand{\topo}{{\mathrm{top}}}
+\newcommand\Lasc{{\mathrm{L}}}
+\newcommand\KP{{\mathrm{KP}}}
+\newcommand\Sh{{\mathrm{Sh}}}
+\newcommand{\restr}{\mathord{\upharpoonright}}
+\newcommand{\EZ}{\mathrel{ { {\mathbf E}_0 } } }
+\newcommand{\Er}{\mathrel{E}}
+\newcommand{\Fr}{\mathrel{F}}
+\newcommand{\lang}{{\mathcal L}}
+\newcommand{\catg}{{\mathcal C}}
+\newcommand{\powerset}{{\mathcal P}}
 \newcommand{\liff}{\mathrel{\leftrightarrow}}
 \newcommand{\limplies}{\mathrel{\rightarrow}}
 \newcommand{\bigland}{\bigwedge}
 \newcommand{\biglor}{\bigvee}
-\newcommand{\Autf}{\operatorname{Aut\,f}}
-\newcommand{\Fin}{\textrm{Fin}}
-\newcommand{\corn}[1]{\ulcorner {#1} \urcorner}
-\newcommand{\G}{{\mathcal G}}
-\newcommand{\Z}{{\bf Z}}
-\newcommand{\N}{{\bf N}}
-\newcommand{\R}{{\bf R}}
-\newcommand{\KP}{{\mathit{KP}}}
-\newcommand{\restr}{\mathord{\upharpoonright}}
-\newcommand{\wt}[1]{\widetilde{#1}}
-\newcommand{\EZ}{\mathrel{ { {\bf E}_0 } } }
-\newcommand{\Er}{\mathrel{E}}
-\newcommand{\Fr}{\mathrel{F}}
-\newcommand{\modelnum}{\bar{m}}
-\newcommand{\smallseq}{\bar{\alpha}}
-\newcommand{\Laseq}{\mathrel{\equiv_L}}
-\newcommand{\KPeq}{\mathrel{\equiv_{KP}}}
+\newcommand{\proves}{\vdash}
+\newcommand{\Rr}{\mathrel{R}}
+\newcommand{\Fin}{\mathrm{Fin}}
+\newcommand{\an}{\mathrm{an}}
+\DeclareMathOperator{\SO}{{SO}}
+\DeclareMathOperator{\GL}{{GL}}
+\DeclareMathOperator{\st}{{st}}
+\DeclareMathOperator{\cl}{{cl}}
+\DeclareMathOperator{\tp}{{tp}}
+\DeclareMathOperator{\acl}{{acl}}
+\DeclareMathOperator{\dcl}{{dcl}}
+\DeclareMathOperator{\Th}{{Th}}
+\DeclareMathOperator{\Gal}{{Gal}}
+\DeclareMathOperator{\Baire}{{Baire}}
+\DeclareMathOperator{\Id}{{Id}}
+\DeclareMathOperator{\id}{{id}}
+\DeclareMathOperator{\Aut}{{Aut}}
+\DeclareMathOperator{\Homeo}{{Homeo}}
+\DeclareMathOperator{\Autf}{{Aut\mkern 0.5\thinmuskip f}}
+\DeclareMathOperator{\CLO}{{CLO}}
+\DeclareMathOperator{\dom}{{dom}}
+\DeclareMathOperator{\Core}{{Core}}
+\DeclareMathOperator{\Stab}{{Stab}}
+\DeclareMathOperator{\SL}{{SL}}
+\DeclareMathOperator{\Souslin}{{\mathcal A}}
+\let\unlhd\trianglelefteq
+
+
+
+
+\newtheorem{mainthm}{Main Theorem}
+\renewcommand*{\themainthm}{\Alph{mainthm}}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{ques}[thm]{Question}
+\newtheorem{problem}[thm]{Problem}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{fct}[thm]{Fact}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{qu}[thm]{Question}
+\newtheorem{con}[thm]{Conjecture}
+
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\theoremstyle{definition}
+\newtheorem{dfn}[thm]{Definition}
+\newtheorem*{sbclm}{Subclaim}
+\newtheorem*{clm*}{Claim}
+\newtheorem{ex}[thm]{Example}
+\newcounter{claimcounter}[thm]
+\newenvironment{clm}{\stepcounter{claimcounter}{\noindent {\textbf{Claim}} \theclaimcounter:}}{}
+\newenvironment{clmproof}[1][\proofname]{\proof[#1]\renewcommand{\qedsymbol}{$\square$(claim)}}{\endproof}
+\newenvironment{sbclmproof}[1][\proofname]{\proof[#1]\renewcommand{\qedsymbol}{$\square$(subclaim)}}{\endproof}
+
+\newcommand{\xqed}[1]{%
+	\leavevmode\unskip\penalty9999 \hbox{}\nobreak\hfill
+	\quad\hbox{\ensuremath{#1}}}
 
 \let\Gamma\varGamma
 \let\Delta\varDelta
@@ -101,6 +140,7 @@ sorting=ydnt,]{biblatex}
 \let\Psi\varPsi
 \let\Omega\varOmega
 \let\phi\varphi
+
 
 
 
@@ -119,10 +159,10 @@ sorting=ydnt,]{biblatex}
 	
 	
 	\section{Borel cardinalities}
-	We've established that it makes sense to talk about the Borel cardinality of a bounded, Borel equivalence relation on $\mon$.
+	We've established that it makes sense to talk about the Borel cardinality of a bounded, Borel equivalence relation on $\fC$.
 	
-	\begin{con}[Conjecture 2, \autocite{KPS13}]
-		Any non-smooth $K_\sigma$ equivalence relation can be represented, for some theory $T$, by some $\Laseq\restr_X$, where $X$ is a single $\KPeq$-class.
+	\begin{con}[Conjecture 2, \cite{KPS13}]
+		Any non-smooth $K_\sigma$ equivalence relation can be represented, for some theory $T$, by some $\equiv_{\Lasc}\restr_X$, where $X$ is a single $\equiv_{\KP}$-class.
 	\end{con}
 	
 	\begin{prop}
@@ -137,7 +177,7 @@ sorting=ydnt,]{biblatex}
 	\end{proof}
 	
 	\begin{thm}
-		Let $I\unlhd 2^{\bf N}$ be a Borel ideal. Then the equivalence relation $E_I$ can be realised (in the sense of Borel cardinality) as a relation $E$ which refines $\equiv$, is refined by $\KPeq$, is orbital, and is only defined on a single complete type.
+		Let $I\unlhd 2^{\bf N}$ be a Borel ideal. Then the equivalence relation $E_I$ can be realised (in the sense of Borel cardinality) as a relation $E$ which refines $\equiv$, is refined by $\equiv_{\KP}$, is orbital, and is only defined on a single complete type.
 	\end{thm}
 	
 	\begin{prop}
@@ -152,7 +192,7 @@ sorting=ydnt,]{biblatex}
 			\item
 			refining or being refined by $\equiv$
 			\item
-			refining or being refined by $\KPeq$
+			refining or being refined by $\equiv_{\KP}$
 			\item
 			being orbital
 			\item
@@ -168,14 +208,14 @@ sorting=ydnt,]{biblatex}
 		Furthermore, the following properties are preserved by $E$ (i.e.\, if all $E_n$ have this property, then so does $E$):
 		\begin{itemize}
 			\item
-			being refined by $\KPeq$
+			being refined by $\equiv_{\KP}$
 			\item
 			being orbital
 		\end{itemize}
 	\end{prop}
 	
 	\begin{prop}
-		Suppose $E_n$ are the restrictions to a single ${\KPeq}$-class of bounded, Borel equivalence relations (in some theories $T_n$, possibly all distinct). Then there is an $E\sim\prod_nE_n/\Fin$ which is also realised as a restriction to a single ${\KPeq}$-class of a bounded, Borel equivalence relation in some theory $T$.
+		Suppose $E_n$ are the restrictions to a single ${\equiv_{\KP}}$-class of bounded, Borel equivalence relations (in some theories $T_n$, possibly all distinct). Then there is an $E\sim\prod_nE_n/\Fin$ which is also realised as a restriction to a single ${\equiv_{\KP}}$-class of a bounded, Borel equivalence relation in some theory $T$.
 		
 		Furthermore, if $E_n$ are restrictions of orbital equivalence relations, then so is $E$
 	\end{prop}
@@ -189,19 +229,19 @@ sorting=ydnt,]{biblatex}
 		\item
 		If we allow $E$ to be refined by $\equiv$, then $E$ can have any Borel cardinality at all.
 		\item
-		If $E$ equal to (a restriction to a type-definable set of) $\equiv$ or $\KPeq$, then $E$ must be smooth (and can be any smooth relation can be obtained this way).
+		If $E$ equal to (a restriction to a type-definable set of) $\equiv$ or $\equiv_{\KP}$, then $E$ must be smooth (and can be any smooth relation can be obtained this way).
 		\item
-		The class of possible Borel cardinalities for $E$ defined on a single type and refined $\KPeq$ contains (equivalence classes of) all smooth equivalence relations, all $E_I$ for Borel ideals $I$ (like ${\bf E}_0,{\bf E}_1,{\bf E}_2,{\bf E}_3$), and it is closed under countable products and Fubini products (i.e.\ $\prod_n/\Fin$).
+		The class of possible Borel cardinalities for $E$ defined on a single type and refined $\equiv_{\KP}$ contains (equivalence classes of) all smooth equivalence relations, all $E_I$ for Borel ideals $I$ (like ${\bf E}_0,{\bf E}_1,{\bf E}_2,{\bf E}_3$), and it is closed under countable products and Fubini products (i.e.\ $\prod_n/\Fin$).
 		\item
-		The class of possible Borel cardinalities for restriction of $E$ of a single $\KPeq$-class contains no smooth class except the trivial one, but it does contain $\ell^\infty$ and ${\bf E}_0$, and it is closed under countable products and Fubini products.
+		The class of possible Borel cardinalities for restriction of $E$ of a single $\equiv_{\KP}$-class contains no smooth class except the trivial one, but it does contain $\ell^\infty$ and ${\bf E}_0$, and it is closed under countable products and Fubini products.
 		\item
-		If $E$ is the restriction of ${\Laseq}$ to a type-definable set, then $E$ may be smooth (in which case it is equal to $\KPeq$), or it may have the Borel cardinality of either ${\bf E}_0$ or $\ell^\infty$, and it is not known if it can have any others, and the same is true about the Borel cardinality of the restriction of $E$ to a single ${\KPeq}$ class.
+		If $E$ is the restriction of ${\equiv_{\Lasc}}$ to a type-definable set, then $E$ may be smooth (in which case it is equal to $\equiv_{\KP}$), or it may have the Borel cardinality of either ${\bf E}_0$ or $\ell^\infty$, and it is not known if it can have any others, and the same is true about the Borel cardinality of the restriction of $E$ to a single ${\equiv_{\KP}}$ class.
 		\item
 		All points above, except for the first one, remain true if we add the assumption that $E$ is orbital. It is not known whether there is some Borel cardinality which can only be attained by a non-orbital $E$.
 	\end{itemize}
 	
 	\begin{qu}
-		Suppose $E$ is a bounded, Borel equivalence relation defined on a (set of realisations of) a single complete type $p$. If $E$ refines $\KPeq$ and it is not smooth, then is the Borel cardinality of $E$ the same as the Borel cardinality of $E$ restricted to a single ${\KPeq}$ class?
+		Suppose $E$ is a bounded, Borel equivalence relation defined on a (set of realisations of) a single complete type $p$. If $E$ refines $\equiv_{\KP}$ and it is not smooth, then is the Borel cardinality of $E$ the same as the Borel cardinality of $E$ restricted to a single ${\equiv_{\KP}}$ class?
 	\end{qu}
 	
 	
@@ -227,10 +267,10 @@ sorting=ydnt,]{biblatex}
 		The $E$ in the previous example does not refine type.
 	\end{rem}
 	
-	\section{Strong G-compactness, strong Borel cardinality}
+	\section{Hereditary G-compactness, hereditary Borel cardinality}
 	
 	\begin{dfn}
-		A theory $T$ is said to be \emph{strongly $G$-compact} when every theory interpreted by $T$ is $G$-compact.
+		A theory $T$ is said to be \emph{hereditarily $G$-compact} when every theory interpreted by $T$ is $G$-compact.
 	\end{dfn}
 	
 	\begin{fct}
@@ -258,7 +298,7 @@ sorting=ydnt,]{biblatex}
 	\end{qu}
 	
 	\begin{thm}
-		Suppose $(P,\leq)$ is a partially ordered set which is model complete, and such that $P\equiv P\sqcup P\sqcup P$ (put one after another). Then $P$ is not strongly $G$-compact.
+		Suppose $(P,\leq)$ is a partially ordered set which is model complete, and such that $P\equiv P\sqcup P\sqcup P$ (put one after another). Then $P$ is not strongly $G$-compact (even without parameters, and without imaginary sorts if one has sorts with arbitrarily many definable constants).
 	\end{thm}
 	\begin{proof}
 		Let $c_n^i$, $n\in {\bf N}^+$, $i=0,\ldots,n-1$ be any (possibly imaginary) pairwise distinct, definable constants. Let $P_n=\bigcup_{i=0}^{n-1} P\times \{c_n^i\}$. Furthermore, define a cyclic order $S_n$ on $P_n$ by saying that $S_n((p_1,c_n^i),(p_2,c_n^j),(p_3,c_n^k))$ whenever $S(i,j,k)$ (where $S$ is the standard cyclic ordering on $\{1,\ldots,n\}$) or $i=j$ and $p_1<p_2$ or $j=k$ and $p_2<p_3$ or $k=i$ and $p_3<p_1$. Finally, put $R_n(p,a_n^i):=(p,a_n^{i+1})$ (with addition modulo $n$ in the upper index).
@@ -322,7 +362,7 @@ sorting=ydnt,]{biblatex}
 				The interpretation in case when $a_2,a_3$ share the first coordinate, distinct from that of $a_1$, is analogous.
 			\end{itemize}
 		\end{itemize}
-		This $(M_n,g_n,S_n)_{n\in 2{\N}+1}$ is clearly a model of the theory described in Casanovas et al, restricted to odd circles. Therefore, it is not G-compact, as was proven there, and DLO is not strongly G-compact.
+		This $(M_n,g_n,S_n)_{n\in 2{\bN}+1}$ is clearly a model of the theory described in Casanovas et al, restricted to odd circles. Therefore, it is not G-compact, as was proven there, and DLO is not strongly G-compact.
 	\end{proof}
 	
 	\begin{cor}
@@ -458,34 +498,34 @@ sorting=ydnt,]{biblatex}
 	\end{qu}
 	
 	\begin{prop}
-		Suppose $G$ is a group definable in $\mon$. Let $I$ be a large set (independent of $\mon$). Consider a structure $\mon'=(\mon,I\times G',I,\cdot,\pi)$, where $G'$ is a copy of $G$, the structure on $\mon$ is standard, there is no internal structure on $I\times G'$ or $I$, $\cdot\colon G\times (I\times G')\to (I\times G')$ is the left action $g\cdot(i,g')=(i,gg')$, and $\pi\colon I\times G'\to I$ is the standard projection.
+		Suppose $G$ is a group definable in $\fC$. Let $I$ be a large set (independent of $\fC$). Consider a structure $\fC'=(\fC,I\times G',I,\cdot,\pi)$, where $G'$ is a copy of $G$, the structure on $\fC$ is standard, there is no internal structure on $I\times G'$ or $I$, $\cdot\colon G\times (I\times G')\to (I\times G')$ is the left action $g\cdot(i,g')=(i,gg')$, and $\pi\colon I\times G'\to I$ is the standard projection.
 		
-		Then $\Aut(\mon')=G^I\rtimes(S_I\times \Aut(\mon))$, where the action of $S_I$ is obvious (and fixes $G'$ coordinates and $\mon$), $\Aut(\mon)$ acts on $\mon$ in the usual way and permutes the $G'$ coordinates in the standard manner (fixing $I$), while $G^I$ permutes the $G'$ coordinates by acting on the right coordinatewise (and fixes $I,\mon$). Moreover, $\Autf_L(\mon')=G^I\rtimes(S_I\times \Autf_L(\mon))$, and similarly for Shelah and Kim-Pillay strong automorphism groups.
+		Then $\Aut(\fC')=G^I\rtimes(S_I\times \Aut(\fC))$, where the action of $S_I$ is obvious (and fixes $G'$ coordinates and $\fC$), $\Aut(\fC)$ acts on $\fC$ in the usual way and permutes the $G'$ coordinates in the standard manner (fixing $I$), while $G^I$ permutes the $G'$ coordinates by acting on the right coordinatewise (and fixes $I,\fC$). Moreover, $\Autf_L(\fC')=G^I\rtimes(S_I\times \Autf_L(\fC))$, and similarly for Shelah and Kim-Pillay strong automorphism groups.
 		
 		Meanwhile, for any $i_0\in I$ and $g'\in G$ we have that the orbits of $(i_0,g')$ via the action of automorphisms, strong Shelah, Kim-Pillay and Lascar automorphisms respectively are the same as their $G$, $G^0$, $G^{00}$ and $G^{000}$ orbits, respectively. 
 	\end{prop}
 	\begin{proof}
 		The ``meanwhile'' part is standard, as once we add $i_0$ as a parameter, $\{i_0\}\times G'$ is just a principal homogenous space for $G$, which was analysed in detail in \cite{GN08}.
 		
-		For the $\Aut(\mon')$, first note that $\Aut(\mon)$ and $S_I$ act naturally on $\mon'$ (by acting on $\mon$ part and permuting the $G'$ coordinates in $I\times G'$, and by permuting the $I$ coordinates in $I\times G'$, respectively), and the two actions commute. Thus it is easy to see that it is enough to show that $\Aut(\mon'/I\mon)= G^I$. But from the same arguments as in the preceding paragraph, the automorphisms of $\{i_0\}\times G'$ fixing $\mon$ are the same as $G$ acting on the right. Clearly, the actions on $\{i\}\times G'$ and $\{j\}\times G'$ are independent, and each of them must be preserved setwise by $\Aut(\mon'/I\mon)$, so we are done.
+		For the $\Aut(\fC')$, first note that $\Aut(\fC)$ and $S_I$ act naturally on $\fC'$ (by acting on $\fC$ part and permuting the $G'$ coordinates in $I\times G'$, and by permuting the $I$ coordinates in $I\times G'$, respectively), and the two actions commute. Thus it is easy to see that it is enough to show that $\Aut(\fC'/I\fC)= G^I$. But from the same arguments as in the preceding paragraph, the automorphisms of $\{i_0\}\times G'$ fixing $\fC$ are the same as $G$ acting on the right. Clearly, the actions on $\{i\}\times G'$ and $\{j\}\times G'$ are independent, and each of them must be preserved setwise by $\Aut(\fC'/I\fC)$, so we are done.
 		
-		For the $\Autf_L(\mon')$, notice that clearly $S_I, G^I\leq \Autf_L(\mon')$ (because given a small model $M\preceq \mon'$ such that $M\cap I=I_0$ we have $S_{I\setminus I_0},G^{I\setminus I_0}\leq \Aut(\mon'/M)$), and clearly $\Autf_L(\mon)\leq \Autf_L(\mon')$ (as we have no additional structure on $\mon$), so we have $G^I\rtimes(S_I\times \Autf_L(\mon))\leq \Autf_L(\mon')$. The converse is trivial, because $\Autf_L(\mon')$ acts on $\mon$ by Lascar strong automorphisms.
+		For the $\Autf_L(\fC')$, notice that clearly $S_I, G^I\leq \Autf_L(\fC')$ (because given a small model $M\preceq \fC'$ such that $M\cap I=I_0$ we have $S_{I\setminus I_0},G^{I\setminus I_0}\leq \Aut(\fC'/M)$), and clearly $\Autf_L(\fC)\leq \Autf_L(\fC')$ (as we have no additional structure on $\fC$), so we have $G^I\rtimes(S_I\times \Autf_L(\fC))\leq \Autf_L(\fC')$. The converse is trivial, because $\Autf_L(\fC')$ acts on $\fC$ by Lascar strong automorphisms.
 		
 		The argument for other two strong automorphism groups is analogous.
 	\end{proof}
 	
 	\begin{ex}
-		Suppose $\mon=({\bf R}^*,{\bf Z}^*)$ (a large real closed field and a monster extension of the additive group of integers, with a constant for $1\in {\bf Z}$), and let $G$ be the universal cover of $SL_2({\bf R})$. Then the theory of $\mon$ is $G$-compact (and, in fact, $\Autf_L(\mon)=\Aut(\mon)$, because it has a pointwise definable model)  and  $G^{00}\neq G^{000}$. Consider $\mon'$ as in the last proposition.
+		Suppose $\fC=({\bR}^*,{\bf Z}^*)$ (a large real closed field and a monster extension of the additive group of integers, with a constant for $1\in {\bf Z}$), and let $G$ be the universal cover of $SL_2({\bR})$. Then the theory of $\fC$ is $G$-compact (and, in fact, $\Autf_L(\fC)=\Aut(\fC)$, because it has a pointwise definable model)  and  $G^{00}\neq G^{000}$. Consider $\fC'$ as in the last proposition.
 		
-		By the proposition $\Autf_L(\mon')=\Autf_{KP}(\mon')$, but given any $i_0\in I$ we have that $\Autf_L(\mon'/i_0)\neq \Autf_{KP}(\mon'/i_0)$.
+		By the proposition $\Autf_L(\fC')=\Autf_{KP}(\fC')$, but given any $i_0\in I$ we have that $\Autf_L(\fC'/i_0)\neq \Autf_{KP}(\fC'/i_0)$.
 	\end{ex}
 	
 	\begin{ex}
-		If we take for $\mon$ a real closed field and $G=(S^1)^*$, we will have, as before, $\Autf_L(\mon)=\Aut(\mon)$, whereas $G^0\neq G^{00}$ (because $G/G^0$ is trivial and $G/G^{00}=G({\bf R})=S^1$). Thus by the proposition we obtain a theory which has ${\equiv_{KP}}={\equiv_{Sh}}$, but not so after adding a single parameter.
+		If we take for $\fC$ a real closed field and $G=(S^1)^*$, we will have, as before, $\Autf_L(\fC)=\Aut(\fC)$, whereas $G^0\neq G^{00}$ (because $G/G^0$ is trivial and $G/G^{00}=G({\bR})=S^1$). Thus by the proposition we obtain a theory which has ${\equiv_{KP}}={\equiv_{Sh}}$, but not so after adding a single parameter.
 	\end{ex}
 	
 	\begin{ex}
-		We can combine the two previous example by taking $\mon$ as in the first example, and $G=\widetilde{\SL_2({\bf R})}^*\times (S^1)^*$, which yields an example with $\Autf_L(\mon')=\Aut(\mon')$, such that the automorphism group and all strong automorphism groups are pairwise distinct over any $i_0\in I$.
+		We can combine the two previous example by taking $\fC$ as in the first example, and $G=\widetilde{\SL_2({\bR})}^*\times (S^1)^*$, which yields an example with $\Autf_L(\fC')=\Aut(\fC')$, such that the automorphism group and all strong automorphism groups are pairwise distinct over any $i_0\in I$.
 	\end{ex}
 	
 	\section{Generalised topological dynamics}
@@ -500,7 +540,7 @@ sorting=ydnt,]{biblatex}
 	Here, $\Gamma=G\rtimes \Aut(M)$ (or maybe just $\Aut(M)$ is enough?), $G$ is the definable group, $X$ is an affine copy of $G$, $B_X\cong B_G$ are externally definable sets, while $B_\Gamma=???$ (maybe just definable or externally definable subsets).
 	
 	\subsection{Interpretation in the context of automorphism groups of monster model and invariant equivalence relations on a single type}	
-	Here, $\Gamma=\Aut(\mon)$, $G\leq \Aut(\mon)$ is the stabiliser of a single class of $E$ (the invariant equivalence relation), $X$ is the (set of realisations of) the single type we consider. The Boolean algebras are simply the algebras of ($\mon$-)definable sets.
+	Here, $\Gamma=\Aut(\fC)$, $G\leq \Aut(\fC)$ is the stabiliser of a single class of $E$ (the invariant equivalence relation), $X$ is the (set of realisations of) the single type we consider. The Boolean algebras are simply the algebras of ($\fC$-)definable sets.
 	
 	\subsection{The point}
 	When properly formalised, this should allow us to create an abstract version of the flavours of topological dynamics in the flavours given by Newelski, Krupiński and Pillay, possibly simplifying the proofs (by getting rid of the burden of model-theoretic terminology in favour of general dynamical terminology). It should also allow us to painlessly extend these ideas to prove some stronger results, such as those I have talked about with Krzysztof, related to equivalence relations which are only defined on some small type-definable set (smaller than a type), or maybe even $G_\delta$ or something, it's hard to say. Then maybe this machinery will fairly painlessly allow us to apply our theorems in a very general context (mostly removed from model theory).
@@ -514,16 +554,6 @@ sorting=ydnt,]{biblatex}
 	
 	The other one would be larger spaces on which $\Gamma$ does not act point transitively, but maybe this is not needed in the first place. Or maybe some further information in case when the action of $G$ is actually $\Gamma$-invariant in some sense (corresponding to the case when $E$ is orbital/$G$ is normal).
 	
-	\section{Equivalence relations coarser than $\KPeq$ and other simplifications}
-	In \cite{KPR}, the authors have applied topological dynamics to prove various theorems about bounded, invariant equivalence relations on the set of realisations of a complete type.
-	
-	The topological dynamics used there appear to be essential: they supply a compact Hausdorff group which we can map onto the Galois group of the theory in such a way that the proofs go through.
-	
-	In this paper (?!) we explain how these results can be achieved without resorting to topological dynamics for relations coarser than the KP strong type, by using the KP Galois group instead of the aforementioned compact group.
-	
-	It is also possible that this method could be used to obtain some stronger results in this case, for example because the KP Galois group is canonical for the theory (does not depend on the choice of the monster model), and is a Polish group in case of countable theories.
-	
-	Moreover, we will show that in a sense, every bounded, invariant equivalence relation on a single type essentially ``lives'' on the type of a small model.
 	
 	\section{Various unsorted results}
 	\begin{prop}
@@ -544,6 +574,43 @@ sorting=ydnt,]{biblatex}
 	\begin{rem}
 		The $E$ in the previous example does not refine type.
 	\end{rem}
-	\printbibliography
+	
+	\section{Randomization preserves NIP}
+	
+	\section{Every quotient of a Polish group is a strong type}
+	\begin{prop}
+		Suppose $G$ is a pro-(definable group) in $T$, while $H\leq G$ is invariant of bounded index.
+		
+		Then there is a reduct $T'$ of $T$, a complete $\emptyset$-type $p$ (in $T'$) and strong type $E$ on $p$, such that for every small $M\models T'$ we have an $M$-type-definable bijection $f\colon G\to p(\fC')$ such that $f^{-1}[E]$ is the left coset equivalence relation of $H$ on $G$.
+	\end{prop}
+	
+	\begin{fct}
+		Every compact Hausdorff group is a pro-(compact lie group), i.e.\ it is the inverse limit of a surjective system of compact Lie groups. Moreover, we can choose the system in such a way that the connecting maps are analytic.
+	\end{fct}
+	
+	\begin{dfn}
+		A \emph{restricted analytic function} is a function $f\colon [0,1]^n\to \bR$ which is analytic on an open set containing $[0,1]^n$.\xqed{\lozenge}
+	\end{dfn}
+	
+	\begin{fct}
+		Suppose $T$ has NIP and $G$ is a definable group. Then for any small $A$ we have $G^{0}_A=G^{0}_\emptyset$, $G^{00}_A=G^{00}_\emptyset$ and $G^{000}_A=G^{000}_\emptyset$. In particular, $G^0, G^{00}$ and $G^{000}$ exist.
+	\end{fct}
+	
+		
+	\begin{fct}
+		The theory $T=\Th(\bR_{\an})$ of the real field expanded with all restricted analytic functions is o-minimal. In particular, it has NIP.
+	\end{fct}
+
+	\begin{fct}
+		Suppose $G$ is group definable, which is definable in an o-minimal expansion of the real field. Suppose in addition that $G(\bR)=G_\bR$ is a compact Lie group. Then $G/G^{00}=G_{\bR}$.
+	\end{fct}
+	
+	\begin{prop}
+		Let $T=\Th(\bR_{\an})$ be the theory of the real field expanded with all restricted analytic functions. Then for every compact Hausdorff group $G_{\bR}$, there is a pro-(definable group) $G$ such that $G/G^{00}$ is isomorphic to $G_{\bR}$ (as a topological group).
+	\end{prop}
+	\begin{proof}
+		Choose a compact Hausdorff group $G_{\bR}$ and express it as the inverse limit $\varprojlim_i G_{\bR,i}$, where $G_{\bR,i}$ is a compact Lie group. Then clearly $G_{\bR,i}$ is definable in $\bR$, and the connecting maps are analytic, and let $G=\varprojlim_i G_i$. Then $G/G^{00}=\varprojlim_i G_i/G_i^{00}=\varprojlim_i G_{\bR,i}=G_{\bR}$.
+	\end{proof}
+%	\printbibliography
 \end{document}
 

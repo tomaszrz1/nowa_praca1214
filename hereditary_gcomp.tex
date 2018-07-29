@@ -1,0 +1,580 @@
+% !TeX encoding = UTF-8
+% !TeX spellcheck = en_GB
+%% !TeX program = lualatex
+\documentclass[final,a4paper,12pt]{amsart}
+\setlength{\emergencystretch}{2em}
+
+\usepackage[marginratio=1:1]{geometry}
+\date{\today}
+
+\usepackage[T1]{fontenc}
+\usepackage{ae,aecompl}
+%\usepackage{fontspec}
+%%\usepackage[no-math]{fontspec}
+%\setmainfont{futura}
+%\setmainfont{garamond}
+%\usepackage{garamond}
+%\usepackage{times}
+\usepackage[activate={true,nocompatibility},final,tracking=true,kerning=true,spacing=true,stretch=10,shrink=10]{microtype}
+%\usepackage[activate={true,nocompatibility},spacing=false,final,stretch=10,shrink=10]{microtype}
+\SetTracking{encoding=*, shape=sc}{50}
+\microtypecontext{spacing=nonfrench}
+\usepackage[utf8]{inputenc}
+\usepackage[british]{babel}
+\usepackage{csquotes}
+\usepackage[draft=false]{hyperref}
+\usepackage{xcolor}
+%\usepackage{imakeidx}
+%\usepackage[notref,notcite]{showkeys}
+%\usepackage{showidx}
+\usepackage[modulo,pagewise,mathlines]{lineno}
+\linenumbers
+%\usepackage[amsmath,amsthm]{ntheorem}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{tikz-cd}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{thmtools}
+\usepackage{thm-restate}
+\usepackage{mathrsfs}
+\usepackage{enumitem}
+\usepackage{mathtools}
+%\usepackage[backend=biber,
+%url=false,
+%isbn=false,
+%backref=true,
+%citestyle=alphabetic,
+%bibstyle=alphabetic,
+%autocite=inline,
+%sorting=ydnt,]{biblatex}
+%
+%\addbibresource{bibliography.bib}
+
+
+
+\newcommand{\fC}{{\mathfrak C}}
+\newcommand{\cM}{{\mathcal M}}
+\newcommand{\cN}{{\mathcal N}}
+\newcommand{\cB}{{\mathcal B}}
+\newcommand{\bN}{{\mathbf{N}}}
+\newcommand{\bR}{{\mathbf{R}}}
+\newcommand{\bZ}{{\mathbf{Z}}}
+\newcommand{\bQ}{{\mathbf{Q}}}
+\newcommand{\cA}{{\mathcal A}}
+\newcommand{\topo}{{\mathrm{top}}}
+\newcommand\Lasc{{\mathrm{L}}}
+\newcommand\KP{{\mathrm{KP}}}
+\newcommand\Sh{{\mathrm{Sh}}}
+\newcommand{\restr}{\mathord{\upharpoonright}}
+\newcommand{\EZ}{\mathrel{ { {\mathbf E}_0 } } }
+\newcommand{\Er}{\mathrel{E}}
+\newcommand{\Fr}{\mathrel{F}}
+\newcommand{\lang}{{\mathcal L}}
+\newcommand{\catg}{{\mathcal C}}
+\newcommand{\powerset}{{\mathcal P}}
+\newcommand{\liff}{\mathrel{\leftrightarrow}}
+\newcommand{\limplies}{\mathrel{\rightarrow}}
+\newcommand{\bigland}{\bigwedge}
+\newcommand{\biglor}{\bigvee}
+\newcommand{\proves}{\vdash}
+\newcommand{\Rr}{\mathrel{R}}
+\newcommand{\Fin}{\mathrm{Fin}}
+\newcommand{\an}{\mathrm{an}}
+\newcommand{\eq}{\mathrm{eq}}
+\DeclareMathOperator{\SO}{{SO}}
+\DeclareMathOperator{\GL}{{GL}}
+\DeclareMathOperator{\st}{{st}}
+\DeclareMathOperator{\cl}{{cl}}
+\DeclareMathOperator{\tp}{{tp}}
+\DeclareMathOperator{\acl}{{acl}}
+\DeclareMathOperator{\dcl}{{dcl}}
+\DeclareMathOperator{\Th}{{Th}}
+\DeclareMathOperator{\Gal}{{Gal}}
+\DeclareMathOperator{\Baire}{{Baire}}
+\DeclareMathOperator{\Id}{{Id}}
+\DeclareMathOperator{\id}{{id}}
+\DeclareMathOperator{\Aut}{{Aut}}
+\DeclareMathOperator{\Homeo}{{Homeo}}
+\DeclareMathOperator{\Autf}{{Aut\mkern 0.5\thinmuskip f}}
+\DeclareMathOperator{\CLO}{{CLO}}
+\DeclareMathOperator{\dom}{{dom}}
+\DeclareMathOperator{\Core}{{Core}}
+\DeclareMathOperator{\Stab}{{Stab}}
+\DeclareMathOperator{\SL}{{SL}}
+\DeclareMathOperator{\Souslin}{{\mathcal A}}
+\let\unlhd\trianglelefteq
+
+
+
+
+\newtheorem{mainthm}{Main Theorem}
+\renewcommand*{\themainthm}{\Alph{mainthm}}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{ques}[thm]{Question}
+\newtheorem{problem}[thm]{Problem}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{fct}[thm]{Fact}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{qu}[thm]{Question}
+\newtheorem{con}[thm]{Conjecture}
+
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\theoremstyle{definition}
+\newtheorem{dfn}[thm]{Definition}
+\newtheorem*{sbclm}{Subclaim}
+\newtheorem*{clm*}{Claim}
+\newtheorem{ex}[thm]{Example}
+\newcounter{claimcounter}[thm]
+\newenvironment{clm}{\stepcounter{claimcounter}{\noindent {\textbf{Claim}} \theclaimcounter:}}{}
+\newenvironment{clmproof}[1][\proofname]{\proof[#1]\renewcommand{\qedsymbol}{$\square$(claim)}}{\endproof}
+\newenvironment{sbclmproof}[1][\proofname]{\proof[#1]\renewcommand{\qedsymbol}{$\square$(subclaim)}}{\endproof}
+
+\newcommand{\xqed}[1]{%
+	\leavevmode\unskip\penalty9999 \hbox{}\nobreak\hfill
+	\quad\hbox{\ensuremath{#1}}}
+
+
+\usepackage{isomath}
+
+\usepackage{upgreek}
+\usepackage{wrapfig}
+
+\begin{document}
+	
+	\address{
+		Instytut Matematyczny, Uniwersytet Wrocławski,
+		pl. Grunwaldzki 2/4, 50-384 Wrocław, Poland
+	}
+	
+	
+	
+	\author{Tomasz Rzepecki}
+	\email[T.\ Rzepecki]{tomasz.rzepecki@math.uni.wroc.pl}
+	
+	\section{Cyclic orders}
+	
+	\begin{dfn}
+		A ternary relation $C(x,y,z)$ is a (strict) partial cyclic order on a set $G$ if it satisfies the following axioms:
+		\begin{enumerate}
+			\item
+			cyclicity: if $C(x,y,z)$, then $C(z,x,y)$,
+			\item 
+			asymmetry: if $C(x,y,z)$, then $\neg C(z,y,x)$,
+			\item 
+			transitivity: if $C(x,y,z)$ and $C(y,z,t)$, then $C(x,y,t)$.
+		\end{enumerate}
+		We say that $C$ is \emph{total} if for any three distinct $x,y,z$ we have either $C(x,y,z)$ or $C(x,z,y)$.
+	\end{dfn}
+	
+	\begin{dfn}
+		Let $(G,C)$ be a cyclically ordered set, and let $((P_c,<_c))_{c\in }$ be partially ordered sets. Then the \emph{cyclic sum} $\bigcirc_{c\in G} P_c$ is the disjoint union $\bigsqcup_c P_c$ ordered cyclically by declaring that $C'((x,c_x),(y,c_y),(z,c_z))$ when one of the following holds:
+		\begin{itemize}
+			\item 
+			$C(c_x,c_y,c_z)$,
+			\item 
+			$c_u=c_v\neq c_w$ and $u<_{c_u} v$ for a cyclic permutation $(u,v,w)$ of $(x,y,z)$,
+			\item 
+			$c_x=c_y=c_z$ and $u<_{c_x} v<_{c_x}w$ for a cyclic permutation $(u,v,w)$ of $(x,y,z)$.
+		\end{itemize}
+		
+		Given a partially ordered set $(P,<)$ and a natural number $n$ by \emph{cyclic power} $P^{\circ n}$ we denote the cyclic product $\bigcirc_{c} P$, where $c$ ranges over the set $\{1,\ldots, n \}$ with the natural circular ordering.
+	\end{dfn}
+	
+	\begin{dfn}
+		We say that a partially ordered set $(P,<)$ is \emph{cyclically three-splitting} if for every $n\in \bN_+$, the three embeddings of $P^{\circ n}$ into $P^{\circ 3n}$ (given by mapping first copy of $P$ into the first cop) are elementary.
+	\end{dfn}
+	
+	\begin{dfn}
+		Given a partially ordered set $(P,<)$ and a positive integer $n$, denote by $C_n(P)$ the structure $(P^{\circ n},C,R_n)$, where $C$ is the natural cyclic order, and $R_n$ is the automorphism of $P^{\circ n}$ of order $n$, given by mapping the $i$-th copy of $P$ to the $i+1$-st copy of $P$.
+	\end{dfn}
+	
+	\begin{rem}
+		It is easy to see that $(P,<)$ interprets every $C_n(P)$.\xqed{\lozenge}
+	\end{rem}
+	
+	\begin{rem}[by Antongiulio Fornasiero]
+		One can show that a discrete (pure) linear order with two endpoints does not interpret a linear order without endpoints.\xqed{\lozenge}
+	\end{rem}
+	
+	\begin{prop}
+		Suppose $(P,<)$ is a three-splitting poset. Then for any positive integer $n$, the Lascar diameter of $C_n(P)$ is at least $\lfloor n/2\rfloor$, and at most $n$.
+	\end{prop}
+	\begin{proof}
+		Enumerate $P^{\oplus 3}$ naturally as $(p,i)_{p\in P,i\in \{1,2,3\}}$, and for each $i=1,2,3$ let $P_i=((p,i))_{p\in P}$. Identify $P$ with $P_1$.
+		
+		By assumption, for each $i=1,2,3$, we have $P_i\preceq P^{\oplus 3}$, and in particular, $C_n(P_i)\preceq C_n(P^{\oplus 3})$. Denote by $P^*$ a monster model of $P$ containing $P^{\oplus 3}$. Then $C_n(P^*)$ is the monster model of $C_n(P)$ and we have (for each $i=1,2,3$) $C_n(P_i)\preceq C_n(P^{\oplus 3})\preceq C_n(P^*)$.
+		
+		Now, note that for each $i=1,2,3$, there is $\sigma_i\in \Aut(C_n(P^*))$ such that $\sigma_i((p,i))=(p,i)$ and $\sigma_i((p,i+1))=(p,i+2)$ (with the convention that $(p,4)=(p,1)$ and $(p,5)=(p,2)$).
+	\end{proof}
+	
+	\begin{prop}
+		$(\bQ,<)$ and $(\bZ, <)$ are three-splitting.
+	\end{prop}
+	
+	\section{Hereditary G-compactness, hereditary Borel cardinality}
+	
+	\begin{dfn}
+		We say that a theory $T$ is \emph{G-compact} if $\equiv_\Lasc$ is type-definable, or equivalently, if the Galois group $\Gal(T)$ is a Hausdorff group.
+	\end{dfn}
+	
+	\begin{dfn}
+		We say that a structure is \emph{G-compact} if its theory is G-compact.
+	\end{dfn}
+	
+	\begin{dfn}
+		If $M$ and $N=(S_i,R_j,f_k,c_l)_{i,j,k,l}$ (where $S_i$ are sorts, $R_j$ are predicates, $f_k$ are functions and $c_l$ are constants) are structures (possibly in different languages), then we say that $M$ \emph{interprets} $N$ if we can in $M^{\eq}$ definable sets $S_i'$, definable relations $R_j'$, definable functions $f_k'$ and definable points $c_l'$, such that $(S_i',R_j',f_k',c_l')_{i,j,k,l}\cong N$.
+	\end{dfn}
+	
+	\begin{dfn}
+		A theory $T$ is said to be \emph{hereditarily G-compact} if for every model $M\models T$, and every structure $N$ interpreted by $M$ (with parameters), $N$ is G-compact.
+	\end{dfn}
+	
+	\begin{rem}
+		It is enough to consider any single $\lvert T\rvert^+$-saturated $M\models T$ (the only way the choice of the model matters is in the realised types of the parameters used in the interpretation). Furthermore, one can check that $T$ is hereditarily G-compact if and only if its restriction to every countable sublanguage is hereditarily G-compact. (?)
+	\end{rem}
+	
+	\begin{fct}
+		Every simple theory is G-compact, and every theory interpreted by a simple theory is simple. Therefore, every simple theory is hereditarily G-compact.
+	\end{fct}
+	
+	
+	\begin{ex}
+		Let $T$ be any non-G-compact theory. Then $T^{Sk}$, the Skolemization of $T$, is G-compact but not hereditarily G-compact (because it interprets $T$).
+	\end{ex}
+	
+	\begin{ex}
+		Any o-minimal expansion of a group (with at least two definable points) is G-compact (because it has definable Skolem functions). On the other hand, we will see below that no theory which interprets dense linear orderings is hereditarily G-compact (this includes many o-minimal theories, such as all expansions of the real field).
+	\end{ex}
+	
+	
+	
+	
+	\begin{qu}
+		Is simplicity equivalent to hereditary G-compactness?
+	\end{qu}
+	
+	\begin{qu}
+		Is NSOP equivalent to hereditary G-compactness?
+	\end{qu}
+	
+	\begin{dfn}
+		Given two posets $P=(P,<_P),(Q,<_Q)$, the \emph{linear sum} $P\oplus Q$ is defined as $(P\sqcup Q,<)$ where $a<b$ if:
+		\begin{itemize}
+			\item
+			$a\in P$ and $b\in Q$, or
+			\item
+			$a,b\in P$ and $a<_Pb$,
+			\item
+			or $a,b\in Q$ and $a<_Qb$.
+		\end{itemize}
+	\end{dfn}
+	Informally, $P\oplus Q$ is the disjoint union of $P$ and $Q$ with $Q$ put after $P$.
+	
+	\begin{rem}
+		The linear sum $\oplus$ is clearly associative.\xqed{\lozenge}
+	\end{rem}
+	
+	\begin{dfn}
+		We say that a partially ordered set $(P,<)$ is \emph{three-splitting} if the three natural embeddings of $P$ into $P\oplus P\oplus P$ are all elementary.
+	\end{dfn}
+	
+	\begin{rem}
+		A three-splititng poset $(P,<)$ can have no minimal or maximal elements and no finite maximal chains.\xqed{\lozenge}
+	\end{rem}
+	
+	\begin{prop}
+		If $(P,<)$ is linear, has no endpoints and is dense or discrete, then it is three-splitting.
+	\end{prop}
+	
+	\begin{thm}
+		\label{thm:main_3copies}
+		Suppose $(P,\leq)$ is a partially ordered set such that the three natural embeddings of $P$ into $P\oplus P\oplus P$ are elementary. Then $P$ is not hereditarily G-compact (even without parameters, and without imaginary sorts if one has sorts with arbitrarily many definable constants).
+	\end{thm}
+	\begin{proof}
+		Let $c_n^i$, $n\in {\bf N}^+$, $i=0,\ldots,n-1$ be any (possibly imaginary) pairwise distinct, definable constants. Let $P_n=\bigcup_{i=0}^{n-1} P\times \{c_n^i\}$. Furthermore, define a cyclic order $S_n$ on $P_n$ by saying that $S_n((p_1,c_n^i),(p_2,c_n^j),(p_3,c_n^k))$ whenever $S(i,j,k)$ (where $S$ is the standard cyclic ordering on $\{1,\ldots,n\}$) or $i=j$ and $p_1<p_2$ or $j=k$ and $p_2<p_3$ or $k=i$ and $p_3<p_1$. Finally, put $R_n(p,a_n^i):=(p,a_n^{i+1})$ (with addition modulo $n$ in the upper index).
+		
+		Put $\mathcal P=(P_n,S_n,R_n)_{n\in {\bf N}^+}$. Clearly $P$ interprets $\mathcal P$ (without parameters). We will show that $\mathcal P$ is not G-compact.
+		
+		Denote by $\mathcal P^*$ a model constructed analogously to $\mathcal P$, only with $P$ replaced by its monster model extension $P^*$. It is easy to see that then $\mathcal P\preceq \mathcal P^*$ (because they are interpreted in the same way from $P$ and $P^*$, respectively).
+%		
+%		\begin{clm}
+%			Suppose $(P'_n)$ is a sequence of models $\Th(P)$. Then $\bigcup_n \bigcup_i P'_n\times \{c_n^i\}\equiv \mathcal P$ and every model of $\Th(\mathcal P)$ is of this form. The resulting model is saturated (a monster model) if and only if each $P'_n$ is saturated. In particular, if $P^*$ is a saturated extension (respectively, a monster model) of $\Th(P)$, the model $\mathcal P^*$ formed by taking $P'_n:=P^*$ is a monster model extension of $\mathcal P$
+%		\end{clm}
+%		\begin{clmproof}
+%			(Straightforward?)
+%		\end{clmproof}
+		
+		Choose arbitrary $p_0\in P$. We will show that for $n>1$,
+		\[
+			n/2-1<d_L((p_0,c_n^0),(p_0,c_n^{\lfloor n/2\rfloor})<\infty.
+		\]
+		This will complete the proof, as the diameter of $[(p_0,c_n^0)_{n\in {\bf N}^+}]_{\equiv_{\Lasc}}$ will be unbounded.
+		
+		For the first inequality, note that if $\bar p_1, \bar p_2\in P_n^*$ have the same type over some $\mathcal M\preceq \mathcal P^*$, we must have $S_n(\bar p_1,\bar p_2,R_n(\bar p_1))$ or $S_n(\bar p_1,\bar p_2,R_n^{-1}(\bar p_1))$ (because there are some points in $\mathcal M$ between $\bar p_1$ and each of $R_n(\bar p_1)$ and $R_n^{-1}(\bar p_2)$). In particular, the second coordinate can change by at most one step between $\bar p_1$ and $\bar p_2$. Therefore, since $c_n^0$ and $c_n^{\lfloor n/2\rfloor}$ differ by $\lfloor n/2\rfloor$, we obtain the first inequality.
+		
+		For the second, more substantial step, by the assumption and saturation of $P^*$, we can find some $P^-,P^+\preceq P^*$ such that $P^-<P<P^+$ and $P^-\cup P\cup P^+\preceq P^*$, and such that there exists an $f\colon P^-\cup P\cup P^+$ such that restrictions to $P^-,P$ and $P^+$ are isomorphisms with $P$, $P^+$ and $P^-$, respectively.
+		
+		Now, define partial functions $\sigma_-,\sigma,\sigma_+\colon \mathcal P^*\to \mathcal P^*$ by the formulas:
+		\[
+		\sigma_-((p,c_n^i)):=\begin{cases} (f(p),c_n^i)\textrm{ if }p\in P^-\\ (p,c_n^i)\textrm{ if }p\in P^+ \end{cases}
+		\]
+		\[
+		\sigma((p,c_n^i)):=\begin{cases} (f(p),c_n^i)\textrm{ if }p\in P\\ (p,c_n^i)\textrm{ if }p\in P^- \end{cases}
+		\]
+		\[
+		\sigma_+((p,c_n^i)):=\begin{cases} (f(p),c_n^{i+1})\textrm{ if }p\in P^+\\ (p,c_n^i)\textrm{ if }p\in P \end{cases}
+		\]
+		It is easy to check that of these is elementary partial maps in $\mathcal P^*$ (because their domains and ranges are models of $\Th(\mathcal P)$, and they are clearly isomorphisms between those), so they extend to automorphisms of $\mathcal P^*$. Moreover, it is easy to see that the extensions are all Lascar strong automorphisms, and $\sigma_-\circ\sigma_+\circ\sigma((p,c_n^i))=(p,c_n^{i+1})$.
+	\end{proof}
+	
+	\begin{prop}
+		If $P$ is a model complete poset such that for any $Q\equiv P$ we have $P\oplus Q\equiv P$, then $P$ satisfies the hypothesis of Theorem~\ref{thm:main_3copies}.
+	\end{prop}
+	\begin{proof}
+		By applying assumption for $Q=P$, we have $P\equiv P\oplus P$, and by applying it again for $Q=P\oplus P$, we get $P\equiv P\oplus P\oplus P$. The result follows immediately by model completeness.
+	\end{proof}
+	
+	\begin{prop}
+		$(\bQ,<)$ and $(\bZ,<)$ satisfy the assumptions of Theorem~\ref{thm:main_3copies}, so they are not hereditarily G-compact (without parameters).
+		
+		Consequently, every infinite linear ordering without endpoints which is discrete or dense is not hereditarily G-compact (without parameters).
+	\end{prop}
+	\begin{proof}
+		In both cases, the conclusion follows from a straightforward application of the Ehrenfeucht-Fraïssé games. For example, to check that the middle copy of $\bZ$ is elementarily embedded in $\bZ\oplus \bZ\oplus \bZ=\bZ^{\oplus 3}$, choose some an arbitrary finite sequence $k_1,\ldots, k_n\in \bZ$, and enumerate $\bZ^{\oplus 3}$ as $\bZ\times \{1,2,3\}$. We need to show that $(\bZ,<,k_1,\ldots,k_n)\equiv (\bZ^{\oplus 3},(k_1,2),\ldots,(k_n,2))$. For an Ehrenfeucht-Fraïssé game of length $N$, 
+	\end{proof}
+	
+	\begin{prop}
+		If $(L,<)$ is an $\aleph_1$-saturated infinite linear order, then there is an infinite definable set $D$ such that $(D,{<}\restr_D)$ is dense or discrete.
+	\end{prop}
+	\begin{proof}
+		Notice that since $(L,<)$ is $\aleph_1$-saturated, it follows immediately that given a definable $D\subseteq L$, $(D,{<}\restr_{D})$ is also $\aleph_1$-saturated.
+		
+		If $L$ defines an infinite discrete linear order, we are done. So suppose it does not. We aim to show that there is a definable dense linear order.
+		
+		Given a linear order $(K,<)$, denote by $S(K)$ the set of all immediate successors in $K$, and denote by $P(K)$ the set of all immediate predecessors. It is clear that $S(K)$ and $P(K)$ are both definable in $(K,<)$.
+		
+		
+		\begin{clm}
+			Let $(K,<)$ be an arbitrary linear order. If $I$ is a convex component of $P(K)$ in $K$ (i.e.\ a maximal subset of $P(K)$ which is convex in $K$), then either $I$ is finite or $I$ contains arbitrarily long finite intervals.
+		\end{clm}
+		\begin{clmproof}
+			If $I$ is finite, we are done. Suppose, then, that $I$ is infinite.
+			
+			For brevity, given $a\in S(K)$, write $a+(-1)$ or $a-1$ for its predecessor, and given $a\in P(K)$, write $a+1$ for its successor in $K$. In the same way, let us write $a+k$ for all $k\in \bZ$ for the $k$-th successor (when it exists).
+			
+			Take any $a\in I$, and consider the set $S_a$ of $a+k$ for all $k\in \bZ$ (for which this makes sense). Note that $S_a$ is convex and all elements of $S_a$, except the last one (if it exists) are contained in $I$.
+			
+			Thus, if $S_a$ is infinite, we are done (because we can find arbitrarily long finite intervals in $I\cap S_a$). So suppose $S_a$ is finite. Then it has a smallest element $a_-$ and a largest element $a^+$. Note that this implies that $a^+\notin P(K)$, so $I\setminus S_a=I\setminus [a_-,a+]=I\cap (-\infty,a_-)$. Thus, because $I$ is infinite, there is some $b\in I$ such that $b<a_-$. But then for each $n\in \bN_{>0}$, if $b+n$ exists, then $b+n\in (b,a_-)\subseteq I$ (otherwise, for some $n$ we would have $b+n=a_-$, which is impossible, because $a_-$ is not a successor). This implies that $b+n+1$ exists. Thus by induction, for all $n\in \bN$, $b+n$ exists, and $(b,b+n+1)$ is an interval with $n$ elements.
+		\end{clmproof}
+		Now, if some convex component of $P(L)$ contains arbitrarily long finite intervals, then by $\aleph_1$-saturation, there is an infinite discrete interval in $L$, which contradicts the assumption from the second paragraph.
+		
+		Otherwise, all convex components of $P(L)$ are finite, so $L'=L\setminus P(L)$ is an infinite discrete linear order: indeed, if there are finitely many convex components, then $P(L)$ is finite, in which case $L'$ is clearly infinite (because $L$ is infinite). Otherwise, if $L\setminus P(L)$ was finite, then $P(L)=L\setminus(L\setminus P(L))$ would have only finitely many convex components, all of them finite. But then $L$ itself would be finite, a contradiction.
+		
+		Similarly, we show that all convex components of $S(L')$ are finite, so $L_1=L'\setminus S(L')$ is an infinite linear order.
+		
+		In the same way, we define $L_n$ for each $n\in \bN_{>0}$ recursively as $L_{n+1}:=L_{n}\setminus P(L_n)\setminus S(L_n\setminus P(L_n))$, and they are all infinite linear orders. There are two cases: either $L_n$ stabilises (i.e.\ eventually $S(L_n)=P(L_n)=\emptyset$), or it does not. In the former case, $L_n$ is clearly dense. Otherwise,
+	\end{proof}
+	
+	
+	\begin{cor}
+		Every o-minimal expansion of a group is G-compact but not hereditarily G-compact.
+	\end{cor}
+	
+	\begin{prop}
+		By an analgous construction, the theory of (infinite) discrete linear orders is not hereditarily G-compact.
+	\end{prop}
+	
+	\begin{prop}
+		If $(L,\leq)$ is a totally ordered set, $L$ interprets a dense linear order or $L$ interprets a discrete linear order.
+	\end{prop}
+	
+	\begin{prop}[?]
+		If $P=(P,\leq)$ is a poset such that $P\equiv P\sqcup P$ ordered in such a way that the first copy goes before the second copy, and $P$ is model complete, then an analogous construction works (probably).
+	\end{prop}
+	
+	\begin{rem}
+		For the ``circles'' construction to work for a general poset $P$, we certainly need $P$ to be upwards and downwards directed, without least or largest element.
+	\end{rem}
+	
+	\begin{rem}
+		If $P$ is a poset, and $b$ is an element such that $b$ is not the supremum of some two elements, then $(-\infty,b)$ is upwards-directed.
+	\end{rem}
+	
+	\begin{qu}
+		Suppose $P$ has the property that every element is the supremum of some two elements. Does this imply IP (or some other general property)? (Note: atomless Boolean algebras have this property, as do binary ordered trees (growing down). They both have IP and SOP.)
+	\end{qu}
+	
+	\begin{qu}
+		Are atomless Boolean algebras hereditarily G-compact?
+	\end{qu}
+	
+	\begin{rem}
+		In atomless Boolean algebras, we can always eliminate the parameters (up to a definable bijection). From now on, we will assume that there are no parameters.
+	\end{rem}
+	
+	\begin{lem}
+		Let $T$ be the theory of atomless boolean algebras. Let $\varphi(x_1,\ldots,x_n)$ be any formula such that $\varphi(x^1,\ldots,x^n)\proves \bigland_i p(x^i)$ where $p$ is a complete $\emptyset$-type. Then we can assume without loss of generality (up to a $\emptyset$-definable bijection) that $p$ is the type of a partition and $\varphi(x^1,\ldots,x^n)$ is equivalent to a formula of the form $\biglor\bigland x_j^i\cap x_{j'}^{i'}\mathrel{[{=}/{\neq}]}\emptyset$ (i.e. a set of \emph{permissible} intersection tables).
+	\end{lem}
+	\begin{proof}
+		The first part is obvious. The second part is just calculation (and q.e.).
+	\end{proof}
+	
+	\begin{cor}
+		Atomless boolean algebras don't interpret infinite linear orders.
+	\end{cor}
+	\begin{proof}
+		Suppose a formula $\varphi(x,y)$ defines a linear preorder with infinitely many equivalence classes. By $\omega$-categoricity, one of the $\lvert x\rvert$-types intersects infinitely many of these classes, so we can assume without loss of generality that $\varphi$ implies this type, and so, by the preceding lemma, that $x$ is a partition.
+		
+		Now, let $x$ and $y$ be arbitrary partitions of the appropriate size. Let $z$ be a partition of the same size, independent of $x$ and $y$. Then by linearity, either $\models \varphi(x,z)$ or $\models \varphi(z,x)$. But the type of $x$ over $z$ is the same as the type of $z$ over $x$, so in fact $\models\varphi(x,z)\land \varphi(z,x)$. For the same reason, $\models \varphi(z,y)\land \varphi(y,z)$, and hence by transitivity $\models \varphi(x,y)\land \varphi(y,x)$, so $x$ and $y$ are equivalent and, as they were arbitrary, $\varphi$ defines a total relation on its domain, a contradiction.
+	\end{proof}
+	
+	\begin{rem}
+		Suppose atomless boolean algebras interpret a nontrivially directed poset. Let $\varphi(x,y)$ be the formula defining it. Then we can restrict $\varphi$ to a single complete type in such a way that it still defines a nontrivially directed poset.
+	\end{rem}
+	\begin{proof}
+		Note that a (countable) poset is nontrivially directed if and only if it has a cofinal chain. By pigeonhole principle, infinitely many members of the chain lie in a single type, and so we can apply the lemma. 
+	\end{proof}
+	
+	\begin{cor}
+		Suppose $\varphi(x,y)$ defines a nontrivially directed poset on partitions of a given size. Let $x$ be any partition, and let $\bar x$ be the upper bound of all permutations of $x$. Then all row permutations of the intersection table of $x$ and $\bar x$ are permitted by $\varphi$.
+	\end{cor}
+	
+	\begin{rem}
+		Given a poset $P$, for some interval in $P$ to be nontrivially directed, it is necessary that for all $p_0,p_1\in P$ there are some $p,p'$ such that $p_0<p,p'<p_1$ and $p_1$ is the supremum of $p$ and $p'$.
+	\end{rem}
+	
+	\begin{ex}
+		Define a poset $P$ as follows. Let $P_0=\{p_{\textrm{min}},p_{\textrm{max}}\}$, where $p_{\textrm{min}}<p_{\textrm{max}}$. We construct $P_{n+1}$ from $P_n$ by adding, for each pair $p_0,p_1\in P_n$ of distinct points such that $[p_0,p_1]=\{p_0,p_1\}$ in $P_n$, a pair of points $p,p'$ such that $p_0<p,p'<p_1$ and $p$ and $p'$ are incomparable. Then put $P=\lim_n P_n$ with inclusions.
+	\end{ex}
+	
+	\begin{rem}
+		The poset $P$ in the preceding example has the property that no interval is nontrivially directed. In fact, all (open) intervals are isomorphic.
+	\end{rem}
+	
+	\begin{rem}
+		$P$ is a non-distributive lattice.
+	\end{rem}
+	
+	\begin{rem}(?)
+		The poset $P$ has q.e. in the language of bounded lattices (i.e. $\cup,\cap,\leq,0,1$).
+	\end{rem}
+	\begin{proof}
+		Let $\varphi(x,\bar a)$ be quantifier-free formula with parameters $\bar a$, where $\lvert x\rvert=1$. We can assume without loss of generality that $\bar a$ enumerates a sublattice of $P$.
+	\end{proof}
+	
+	\begin{rem}
+		Intervals in $P$ have NIP.
+	\end{rem}
+	
+	\begin{con}[Well-known?]
+		Every NIP unstable theory interprets an infinite linear order. (Note: every unstable weakly $VC$-minimal theory does.)
+	\end{con}
+	
+	\begin{qu}
+		Does an IP+SOP theory intepret an infinite linear order?
+	\end{qu}
+	
+	
+	\begin{qu}
+		For a poset $(P,\leq)$, how do the following properties relate:
+		\begin{enumerate}
+			\item
+			$P$ is directed (both ways?).
+			\item
+			``circles with $P$'' ``work''.
+			\item
+			$P$ has NIP.
+			\item
+			$P$ is nice with respect to $VC$-codimensions.
+		\end{enumerate}
+		What if we only want them up to interpretation?
+	\end{qu}
+	
+	\begin{qu}
+		Suppose $P$ and $Q$ are posets such that their induced circular orders are elementarily equivalent. Does the ``circles'' construction yield elementarily equivalent results?
+	\end{qu}
+	
+	\begin{ex}
+		$\omega\sqcup \omega^*$ yields the same thing as ${\bf Z}$.
+	\end{ex}
+	
+	\section{Adding parameters an G-compactness}
+	
+	\begin{ex}
+		Consider an $F=(F,\cdot,+,c)_{c\in {\bf Q}^{\textrm{alg}}}$ algebraically closed field of characteristic $0$ with parameters for all algebraic numbers. Then the Shelah strong types and types over the empty set coincide, but for any transcendental $t$, the types over $\{t\}$ do not coincide with strong types (e.g.\ $\sqrt{t}$ and $-\sqrt{t}$ have different strong types but the same type over $t$).
+	\end{ex}
+	
+	\begin{qu}
+		Suppose $T$ is G-compact (KP and L strong types coincide). If we add to the language some parameters for elements of a model of $T$, is the resulting theory still G-compact (i.e.\ do the KP and L strong types with parameters coincide)?
+	\end{qu}
+	
+	\begin{prop}
+		Suppose $G$ is a group definable in $\fC$. Let $I$ be a large set (independent of $\fC$). Consider a structure $\fC'=(\fC,I\times G',I,\cdot,\pi)$, where $G'$ is a copy of $G$, the structure on $\fC$ is standard, there is no internal structure on $I\times G'$ or $I$, $\cdot\colon G\times (I\times G')\to (I\times G')$ is the left action $g\cdot(i,g')=(i,gg')$, and $\pi\colon I\times G'\to I$ is the standard projection.
+		
+		Then $\Aut(\fC')=G^I\rtimes(S_I\times \Aut(\fC))$, where the action of $S_I$ is obvious (and fixes $G'$ coordinates and $\fC$), $\Aut(\fC)$ acts on $\fC$ in the usual way and permutes the $G'$ coordinates in the standard manner (fixing $I$), while $G^I$ permutes the $G'$ coordinates by acting on the right coordinatewise (and fixes $I,\fC$). Moreover, $\Autf_L(\fC')=G^I\rtimes(S_I\times \Autf_L(\fC))$, and similarly for Shelah and Kim-Pillay strong automorphism groups.
+		
+		Meanwhile, for any $i_0\in I$ and $g'\in G$ we have that the orbits of $(i_0,g')$ via the action of automorphisms, strong Shelah, Kim-Pillay and Lascar automorphisms respectively are the same as their $G$, $G^0$, $G^{00}$ and $G^{000}$ orbits, respectively. 
+	\end{prop}
+	\begin{proof}
+		The ``meanwhile'' part is standard, as once we add $i_0$ as a parameter, $\{i_0\}\times G'$ is just a principal homogenous space for $G$, which was analysed in detail in \cite{GN08}.
+		
+		For the $\Aut(\fC')$, first note that $\Aut(\fC)$ and $S_I$ act naturally on $\fC'$ (by acting on $\fC$ part and permuting the $G'$ coordinates in $I\times G'$, and by permuting the $I$ coordinates in $I\times G'$, respectively), and the two actions commute. Thus it is easy to see that it is enough to show that $\Aut(\fC'/I\fC)= G^I$. But from the same arguments as in the preceding paragraph, the automorphisms of $\{i_0\}\times G'$ fixing $\fC$ are the same as $G$ acting on the right. Clearly, the actions on $\{i\}\times G'$ and $\{j\}\times G'$ are independent, and each of them must be preserved setwise by $\Aut(\fC'/I\fC)$, so we are done.
+		
+		For the $\Autf_L(\fC')$, notice that clearly $S_I, G^I\leq \Autf_L(\fC')$ (because given a small model $M\preceq \fC'$ such that $M\cap I=I_0$ we have $S_{I\setminus I_0},G^{I\setminus I_0}\leq \Aut(\fC'/M)$), and clearly $\Autf_L(\fC)\leq \Autf_L(\fC')$ (as we have no additional structure on $\fC$), so we have $G^I\rtimes(S_I\times \Autf_L(\fC))\leq \Autf_L(\fC')$. The converse is trivial, because $\Autf_L(\fC')$ acts on $\fC$ by Lascar strong automorphisms.
+		
+		The argument for other two strong automorphism groups is analogous.
+	\end{proof}
+	
+	\begin{ex}
+		Suppose $\fC=({\bR}^*,{\bf Z}^*)$ (a large real closed field and a monster extension of the additive group of integers, with a constant for $1\in {\bf Z}$), and let $G$ be the universal cover of $SL_2({\bR})$. Then the theory of $\fC$ is G-compact (and, in fact, $\Autf_L(\fC)=\Aut(\fC)$, because it has a pointwise definable model)  and  $G^{00}\neq G^{000}$. Consider $\fC'$ as in the last proposition.
+		
+		By the proposition $\Autf_L(\fC')=\Autf_{KP}(\fC')$, but given any $i_0\in I$ we have that $\Autf_L(\fC'/i_0)\neq \Autf_{KP}(\fC'/i_0)$.
+	\end{ex}
+	
+	\begin{ex}
+		If we take for $\fC$ a real closed field and $G=(S^1)^*$, we will have, as before, $\Autf_L(\fC)=\Aut(\fC)$, whereas $G^0\neq G^{00}$ (because $G/G^0$ is trivial and $G/G^{00}=G({\bR})=S^1$). Thus by the proposition we obtain a theory which has ${\equiv_{KP}}={\equiv_{Sh}}$, but not so after adding a single parameter.
+	\end{ex}
+	
+	\begin{ex}
+		We can combine the two previous example by taking $\fC$ as in the first example, and $G=\widetilde{\SL_2({\bR})}^*\times (S^1)^*$, which yields an example with $\Autf_L(\fC')=\Aut(\fC')$, such that the automorphism group and all strong automorphism groups are pairwise distinct over any $i_0\in I$.
+	\end{ex}
+	
+	
+	
+	\begin{prop}
+		The theory DLO of dense linear orderings (without endpoints) interprets without parameters a (structure analogous to) ``circles'' structure given by Casanovas et al, only without the ``even'' circles. Therefore, it is not hereditarily G-compact.
+	\end{prop}
+	\begin{proof}
+		Let us denote by $N$ the entire model of DLO. Let $(c_{n,m})_{n,m}$ be dummy parameters (which can easily be defined in $N^{eq}$), where $n$ natural numbers, and $1\leq m\leq n$.
+		
+		Then we interpret the structure as follows:
+		\begin{itemize}
+			\item
+			$M_n$ is the disjoint union $\bigcup_{m\leq n} \{c_{n,m}\}\times N$.
+			\item
+			$g_n$ is defined by $g_n\cdot (c_{n,m},x)=(c_{n,m+1},x)$, where $c_{n,n+1}=c_{n,1}$.
+			\item
+			For each $n$, we have a natural circular order $S'_n$ on $\{c_{n,1},\ldots,c_{n,n}\}$. This allows us to define the (strict) circular ordering $S_n$ on $M_n$.
+			\begin{itemize}
+				\item
+				If two elements $a_1,a_3$ have the same first coordinate, then an element $a_2$ is between them if and only if it is also has the same first coordinate, and is between according to the ordering on the second coordinate. 
+				\item
+				If $a_1, a_2, a_3$ have pairwise distinct first coordinates, then $a_2$ is between them if and only if the first coordinate is between the first coordinates of $a_1$ and $a_3$ (in the sense of $S'_n$).
+				\item
+				If $a_1, a_2$ have the same first coordinate, distinct from that of $a_3$, then $a_2$ is between $a_1$ and $a_3$ if and only if the second coordinate of $a_2$ is larger or smaller than the second coordinate of $a_1$, depending in the obvious way on the relationship between the first coordinates of $a_1,a_3$.
+				\item
+				The interpretation in case when $a_2,a_3$ share the first coordinate, distinct from that of $a_1$, is analogous.
+			\end{itemize}
+		\end{itemize}
+		This $(M_n,g_n,S_n)_{n\in 2{\bN}+1}$ is clearly a model of the theory described in Casanovas et al, restricted to odd circles. Therefore, it is not G-compact, as was proven there, and DLO is not hereditarily G-compact.
+	\end{proof}
+	
+\end{document}
+

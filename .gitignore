@@ -20,4 +20,9 @@
 *.mtc
 *.mtc1
 *.out
+<<<<<<< HEAD
 *.synctex.gz
+=======
+*.synctex.gz
+*~
+>>>>>>> 2d47e8c55e570876b2544217e8824af860fbc5c4

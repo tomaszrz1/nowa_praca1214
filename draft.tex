@@ -1,0 +1,549 @@
+% !TeX encoding = UTF-8
+% !TeX spellcheck = en_GB
+\documentclass[final,a4paper,12pt]{amsart}
+
+
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{enumitem}
+%\usepackage{mathtools}
+%\usepackage[math-style=ISO]{unicode-math}
+\usepackage[draft=false]{hyperref}
+\usepackage{xcolor}
+\hypersetup{
+	colorlinks,
+	linkcolor={red!50!black},
+	citecolor={blue!50!black},
+	urlcolor={blue!80!black}
+}
+\usepackage{cleveref}
+\usepackage{url}
+\usepackage{datetime}
+\usepackage[backend=biber,
+url=false,
+isbn=false,
+backref=true,
+citestyle=alphabetic,
+bibstyle=alphabetic,
+autocite=inline,
+sorting=ydnt,]{biblatex}
+\usepackage[english]{babel}
+
+\addbibresource{bibliography.bib}
+
+
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{fct}[thm]{Fact}
+\newtheorem{con}{Conjecture}
+\newtheorem{qu}[con]{Question}
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{rems}[thm]{Remarks}
+\theoremstyle{definition}
+\newtheorem{dfn}[thm]{Definition}
+\newtheorem{clm}{Claim}
+\newenvironment{clmproof}[1][\proofname]{\proof[#1]\renewcommand{\qedsymbol}{$\square$(claim)}}{\endproof}
+\newtheorem{ex}[thm]{Example}
+\newcommand{\mathilde}[1]{\wt{\mathcal #1}}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\Spec}{{Spec}}
+\DeclareMathOperator{\rng}{{rng}}
+\DeclareMathOperator{\Stab}{{Stab}}
+\DeclareMathOperator{\Th}{{Th}}
+\DeclareMathOperator{\tp}{{tp}}
+\DeclareMathOperator{\Aut}{{Aut}}
+\DeclareMathOperator{\dcl}{{dcl}}
+\DeclareMathOperator{\Tr}{{Tr}}
+\DeclareMathOperator{\Core}{{Core}}
+\DeclareMathOperator{\Diag}{{Diag}}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Gal}{{Gal}}
+\DeclareMathOperator{\SL}{{SL}}
+\newcommand{\mon}{\mathfrak C}
+\newcommand{\proves}{\mathrel{\vdash}}
+\newcommand{\liff}{\mathrel{\leftrightarrow}}
+\newcommand{\limplies}{\mathrel{\rightarrow}}
+\newcommand{\bigland}{\bigwedge}
+\newcommand{\biglor}{\bigvee}
+\newcommand{\Autf}{\operatorname{Aut\,f}}
+\newcommand{\Fin}{\textrm{Fin}}
+\newcommand{\corn}[1]{\ulcorner {#1} \urcorner}
+\newcommand{\G}{{\mathcal G}}
+\newcommand{\Z}{{\bf Z}}
+\newcommand{\N}{{\bf N}}
+\newcommand{\R}{{\bf R}}
+\newcommand{\KP}{{\mathit{KP}}}
+\newcommand{\restr}{\mathord{\upharpoonright}}
+\newcommand{\wt}[1]{\widetilde{#1}}
+\newcommand{\EZ}{\mathrel{ { {\bf E}_0 } } }
+\newcommand{\Er}{\mathrel{E}}
+\newcommand{\Fr}{\mathrel{F}}
+\newcommand{\modelnum}{\bar{m}}
+\newcommand{\smallseq}{\bar{\alpha}}
+\newcommand{\Laseq}{\mathrel{\equiv_L}}
+\newcommand{\KPeq}{\mathrel{\equiv_{KP}}}
+
+\let\Gamma\varGamma
+\let\Delta\varDelta
+\let\Theta\varTheta
+\let\Lambda\varLambda
+\let\Xi\varXi
+\let\Pi\varPi
+\let\Sigma\varSigma
+\let\Upsilon\varUpsilon
+\let\Phi\varPhi
+\let\Psi\varPsi
+\let\Omega\varOmega
+\let\phi\varphi
+
+
+
+\begin{document}
+	
+	\address{
+		Instytut Matematyczny, Uniwersytet Wrocławski,
+		pl. Grunwaldzki 2/4, 50-384 Wrocław, Poland
+	}
+	
+	
+	
+	\author{Tomasz Rzepecki}
+	\email[T.\ Rzepecki]{tomasz.rzepecki@math.uni.wroc.pl}
+	
+	
+	
+	\section{Borel cardinalities}
+	We've established that it makes sense to talk about the Borel cardinality of a bounded, Borel equivalence relation on $\mon$.
+	
+	\begin{con}[Conjecture 2, \autocite{KPS13}]
+		Any non-smooth $K_\sigma$ equivalence relation can be represented, for some theory $T$, by some $\Laseq\restr_X$, where $X$ is a single $\KPeq$-class.
+	\end{con}
+	
+	\begin{prop}
+		Suppose $S_\alpha(\emptyset)$ is uncountable (this is always the case for countably infinite $\alpha$) and that $M$ is a countable atomic model (this happens, for example, if we take for $T$ the theory of real closed fields, for $M$ the algebraic reals and $\alpha=1$). Then for any Borel equivalence relation $F$ on some uncountable standard Borel space $X$, there is a bounded equivalence relation $E$ such that $E^M\sim_B F$ (even more: $S(M)/E^M$ is isomorphic to $X/F$).
+	\end{prop}
+	\begin{proof}
+		$S_\alpha(\emptyset)$ is an uncountable Polish space. Therefore, there is a Borel isomorphism $\Phi\colon S_\alpha(\emptyset)\to X$. We can then define $\mathrel{E}$ as 
+		\[
+		a\mathrel{E}b\iff \Phi(\tp(a/\emptyset)) \mathrel{F} \Phi(\tp(b/\emptyset))
+		\]
+		Since $M$ is atomic, each complete $\emptyset$-type extends uniquely to an $M$-type, so $\Phi$ induces an isomorphism between $S(M)/E^M$ and $X/F$.
+	\end{proof}
+	
+	\begin{thm}
+		Let $I\unlhd 2^{\bf N}$ be a Borel ideal. Then the equivalence relation $E_I$ can be realised (in the sense of Borel cardinality) as a relation $E$ which refines $\equiv$, is refined by $\KPeq$, is orbital, and is only defined on a single complete type.
+	\end{thm}
+	
+	\begin{prop}
+		Any Borel cardinality can be realised by an equivalence relation $E$ which is refined by $\equiv$.
+	\end{prop}
+	
+	\begin{prop}
+		Suppose $E_n$ are bounded,  Borel equivalence relations on some type-definable sets $X_n$ (in some theories $T_n$, possibly all distinct). Then there is $E\sim_B \prod_nE_n$ which is also bounded, Borel equivalence relation in some theory $T$.
+		
+		Furthermore, the following properties are preserved by $E$ (i.e.\, if all $E_n$ have this property, then so does $E$):
+		\begin{itemize}
+			\item
+			refining or being refined by $\equiv$
+			\item
+			refining or being refined by $\KPeq$
+			\item
+			being orbital
+			\item
+			being orbital on types
+			\item
+			being defined on a single complete type
+		\end{itemize}
+	\end{prop}
+	
+	\begin{prop}
+		Suppose $E_n$ are Borel equivalence relations are realised by some bounded, Borel equivalence relations on single types $p_n$ (in some theories $T_n$, possibly all distinct). Then there is $E\sim_B\prod_nE_n/\Fin$ which is also a bounded, Borel equivalence relation on a single type $p$ in some theory $T$.
+		
+		Furthermore, the following properties are preserved by $E$ (i.e.\, if all $E_n$ have this property, then so does $E$):
+		\begin{itemize}
+			\item
+			being refined by $\KPeq$
+			\item
+			being orbital
+		\end{itemize}
+	\end{prop}
+	
+	\begin{prop}
+		Suppose $E_n$ are the restrictions to a single ${\KPeq}$-class of bounded, Borel equivalence relations (in some theories $T_n$, possibly all distinct). Then there is an $E\sim\prod_nE_n/\Fin$ which is also realised as a restriction to a single ${\KPeq}$-class of a bounded, Borel equivalence relation in some theory $T$.
+		
+		Furthermore, if $E_n$ are restrictions of orbital equivalence relations, then so is $E$
+	\end{prop}
+	
+	(Countable unions, countable intersections!)
+	
+	The picture we get is as follows.
+	
+	For arbitrary bounded and Borel equivalence relations $E$ we have:
+	\begin{itemize}
+		\item
+		If we allow $E$ to be refined by $\equiv$, then $E$ can have any Borel cardinality at all.
+		\item
+		If $E$ equal to (a restriction to a type-definable set of) $\equiv$ or $\KPeq$, then $E$ must be smooth (and can be any smooth relation can be obtained this way).
+		\item
+		The class of possible Borel cardinalities for $E$ defined on a single type and refined $\KPeq$ contains (equivalence classes of) all smooth equivalence relations, all $E_I$ for Borel ideals $I$ (like ${\bf E}_0,{\bf E}_1,{\bf E}_2,{\bf E}_3$), and it is closed under countable products and Fubini products (i.e.\ $\prod_n/\Fin$).
+		\item
+		The class of possible Borel cardinalities for restriction of $E$ of a single $\KPeq$-class contains no smooth class except the trivial one, but it does contain $\ell^\infty$ and ${\bf E}_0$, and it is closed under countable products and Fubini products.
+		\item
+		If $E$ is the restriction of ${\Laseq}$ to a type-definable set, then $E$ may be smooth (in which case it is equal to $\KPeq$), or it may have the Borel cardinality of either ${\bf E}_0$ or $\ell^\infty$, and it is not known if it can have any others, and the same is true about the Borel cardinality of the restriction of $E$ to a single ${\KPeq}$ class.
+		\item
+		All points above, except for the first one, remain true if we add the assumption that $E$ is orbital. It is not known whether there is some Borel cardinality which can only be attained by a non-orbital $E$.
+	\end{itemize}
+	
+	\begin{qu}
+		Suppose $E$ is a bounded, Borel equivalence relation defined on a (set of realisations of) a single complete type $p$. If $E$ refines $\KPeq$ and it is not smooth, then is the Borel cardinality of $E$ the same as the Borel cardinality of $E$ restricted to a single ${\KPeq}$ class?
+	\end{qu}
+	
+	
+	
+	
+	\section{Various unsorted results}
+	\begin{prop}
+		If $E$ is a $\biglor$-definable, bounded equivalence relation on a definable set $X$, then $E$ is definable and has finitely many classes.
+	\end{prop}
+	\begin{proof}
+		Choose a set $T$ of representatives of $E$-classes; it will be a small set since $E$ is assumed to be bounded.
+		
+		Each $E$-class is $\biglor$-definable over $T$, as its its complement (since it is the union of the other classes), therefore each $E$-class is definable over $T$. Now, choose for each $t\in T$ a formula $\varphi_t$ defining the class of $t$ over $T$. Then for any $a,b\in X$ we have
+		\[
+		a\mathrel{E}b\iff \models \bigland_{t\in T} (\varphi_t(a)\liff \varphi_t(b))
+		\]
+		so $E$ is $\bigland$-definable over $T$. But it is also $\biglor$-definable, so it is definable over $T$, and since it is invariant over $\emptyset$, it is also definable over $\emptyset$, and a bounded, definable equivalence relation can have only finitely many classes (by compactness).
+	\end{proof}
+	
+	
+	
+	\begin{rem}
+		The $E$ in the previous example does not refine type.
+	\end{rem}
+	
+	\section{Strong G-compactness, strong Borel cardinality}
+	
+	\begin{dfn}
+		A theory $T$ is said to be \emph{strongly $G$-compact} when every theory interpreted by $T$ is $G$-compact.
+	\end{dfn}
+	
+	\begin{fct}
+		Every simple theory is $G$-compact, and every theory interpreted by a simple theory is simple. Therefore, every simple theory is strongly G-compact.
+	\end{fct}
+	
+	
+	\begin{ex}
+		Let $T$ be any non-G-compact theory. Then $T^{Sk}$, the Skolemization of $T$, is $G$-compact but not strongly $G$-compact (because it interprets $T$).
+	\end{ex}
+	
+	\begin{ex}
+		Any o-minimal expansion of a group (with at least two definable points) is G-compact (because it has definable Skolem functions). On the other hand, we will see below that no theory which interprets dense linear orderings is strongly G-compact (this includes many o-minimal theories, such as all expansions of the real field).
+	\end{ex}
+	
+	
+	
+	
+	\begin{qu}
+		Is simplicity equivalent to strong G-compactness?
+	\end{qu}
+	
+	\begin{qu}
+		Is NSOP equivalent to strong $G$-compactness?
+	\end{qu}
+	
+	\begin{thm}
+		Suppose $(P,\leq)$ is a partially ordered set which is model complete, and such that $P\equiv P\sqcup P\sqcup P$ (put one after another). Then $P$ is not strongly $G$-compact.
+	\end{thm}
+	\begin{proof}
+		Let $c_n^i$, $n\in {\bf N}^+$, $i=0,\ldots,n-1$ be any (possibly imaginary) pairwise distinct, definable constants. Let $P_n=\bigcup_{i=0}^{n-1} P\times \{c_n^i\}$. Furthermore, define a cyclic order $S_n$ on $P_n$ by saying that $S_n((p_1,c_n^i),(p_2,c_n^j),(p_3,c_n^k))$ whenever $S(i,j,k)$ (where $S$ is the standard cyclic ordering on $\{1,\ldots,n\}$) or $i=j$ and $p_1<p_2$ or $j=k$ and $p_2<p_3$ or $k=i$ and $p_3<p_1$. Finally, put $R_n(p,a_n^i):=(p,a_n^{i+1})$ (with addition modulo $n$ in the upper index).
+		
+		Put $\mathcal P=(P_n,S_n,R_n)_{n\in {\bf N}^+}$. Clearly $P$ interprets $\mathcal P$ (without parameters). We will show that $\mathcal P$ is not $G$-compact.
+		
+		Denote by $\mathcal P^*$ a model constructed analogously to $\mathcal P$, only with $P$ replaced by its monster model extension $P^*$. It is easy to see that then $\mathcal P\preceq \mathcal P^*$ (because they are interpreted in the same way from $P$ and $P^*$, respectively).
+%		
+%		\begin{clm}
+%			Suppose $(P'_n)$ is a sequence of models $\Th(P)$. Then $\bigcup_n \bigcup_i P'_n\times \{c_n^i\}\equiv \mathcal P$ and every model of $\Th(\mathcal P)$ is of this form. The resulting model is saturated (a monster model) if and only if each $P'_n$ is saturated. In particular, if $P^*$ is a saturated extension (respectively, a monster model) of $\Th(P)$, the model $\mathcal P^*$ formed by taking $P'_n:=P^*$ is a monster model extension of $\mathcal P$
+%		\end{clm}
+%		\begin{clmproof}
+%			(Straightforward?)
+%		\end{clmproof}
+		
+		Choose arbitrary $p_0\in P$. We will show that for $n>1$,
+		\[
+			n/2-1<d_L((p_0,c_n^0),(p_0,c_n^{\lfloor n/2\rfloor})<\infty.
+		\]
+		This will complete the proof, as the diameter of $[(p_0,c_n^0)_{n\in {\bf N}^+}]_{\equiv_L}$ will be unbounded.
+		
+		For the first inequality, note that if $\bar p_1, \bar p_2\in P_n^*$ have the same type over some $\mathcal M\preceq \mathcal P^*$, we must have $S_n(\bar p_1,\bar p_2,R_n(\bar p_1))$ or $S_n(\bar p_1,\bar p_2,R_n^{-1}(\bar p_1))$ (because there are some points in $\mathcal M$ between $\bar p_1$ and each of $R_n(\bar p_1)$ and $R_n^{-1}(\bar p_2)$). In particular, the second coordinate can change by at most one step between $\bar p_1$ and $\bar p_2$. Therefore, since $c_n^0$ and $c_n^{\lfloor n/2\rfloor}$ differ by $\lfloor n/2\rfloor$, we obtain the first inequality.
+		
+		For the second, more substantial step, by the assumption and saturation of $P^*$, we can find some $P^-,P^+\preceq P^*$ such that $P^-<P<P^+$ and $P^-\cup P\cup P^+\preceq P^*$, and such that there exists an $f\colon P^-\cup P\cup P^+$ such that restrictions to $P^-,P$ and $P^+$ are isomorphisms with $P$, $P^+$ and $P^-$, respectively.
+		
+		Now, define partial functions $\sigma_-,\sigma,\sigma_+\colon \mathcal P^*\to \mathcal P^*$ by the formulas:
+		\[
+		\sigma_-((p,c_n^i)):=\begin{cases} (f(p),c_n^i)\textrm{ if }p\in P^-\\ (p,c_n^i)\textrm{ if }p\in P^+ \end{cases}
+		\]
+		\[
+		\sigma((p,c_n^i)):=\begin{cases} (f(p),c_n^i)\textrm{ if }p\in P\\ (p,c_n^i)\textrm{ if }p\in P^- \end{cases}
+		\]
+		\[
+		\sigma_+((p,c_n^i)):=\begin{cases} (f(p),c_n^{i+1})\textrm{ if }p\in P^+\\ (p,c_n^i)\textrm{ if }p\in P \end{cases}
+		\]
+		It is easy to check that of these is elementary partial maps in $\mathcal P^*$ (because their domains and ranges are models of $\Th(\mathcal P)$, and they are clearly isomorphisms between those), so they extend to automorphisms of $\mathcal P^*$. Moreover, it is easy to see that the extensions are all Lascar strong automorphisms, and $\sigma_-\circ\sigma_+\circ\sigma((p,c_n^i))=(p,c_n^{i+1})$.
+	\end{proof}
+	
+	\begin{prop}
+		The theory $DLO$ of dense linear orderings (without endpoints) interprets without parameters a (structure analogous to) ``circles'' structure given by Casanovas et al, only without the ``even'' circles. Therefore, it is not strongly G-compact.
+	\end{prop}
+	\begin{proof}
+		Let us denote by $N$ the entire model of DLO. Let $(c_{n,m})_{n,m}$ be dummy parameters (which can easily be defined in $N^{eq}$), where $n$ ranges over odd natural numbers, and $1\leq m\leq n$.
+		
+		Then we interpret the structure as follows:
+		\begin{itemize}
+			\item
+			$M_n$ is the disjoint union $\bigcup_{m\leq n} \{c_{n,m}\}\times N$.
+			\item
+			$g_n$ is defined by $g_n\cdot (c_{n,m},x)=(c_{n,m+1},x)$, where $c_{n,n+1}=c_{n,1}$.
+			\item
+			For each $n$, we have a natural circular order $S'_n$ on $\{c_{n,1},\ldots,c_{n,n}\}$ (because $n$ is odd). This allows us to define the (strict) circular ordering $S_n$ on $M_n$.
+			\begin{itemize}
+				\item
+				If two elements $a_1,a_3$ have the same first coordinate, then an element $a_2$ is between them if and only if it is also has the same first coordinate, and is between according to the ordering on the second coordinate. 
+				\item
+				If $a_1, a_2, a_3$ have pairwise distinct first coordinates, then $a_2$ is between them if and only if the first coordinate is between the first coordinates of $a_1$ and $a_3$ (in the sense of $S'_n$).
+				\item
+				If $a_1, a_2$ have the same first coordinate, distinct from that of $a_3$, then $a_2$ is between $a_1$ and $a_3$ if and only if the second coordinate of $a_2$ is larger or smaller than the second coordinate of $a_1$, depending in the obvious way on the relationship between the first coordinates of $a_1,a_3$.
+				\item
+				The interpretation in case when $a_2,a_3$ share the first coordinate, distinct from that of $a_1$, is analogous.
+			\end{itemize}
+		\end{itemize}
+		This $(M_n,g_n,S_n)_{n\in 2{\N}+1}$ is clearly a model of the theory described in Casanovas et al, restricted to odd circles. Therefore, it is not G-compact, as was proven there, and DLO is not strongly G-compact.
+	\end{proof}
+	
+	\begin{cor}
+		Every o-minimal expansion of a group is G-compact but not strongly G-compact.
+	\end{cor}
+	
+	\begin{prop}
+		By an analgous construction, the theory of (infinite) discrete linear orders is not strongly $G$-compact.
+	\end{prop}
+	
+	\begin{prop}
+		If $(L,\leq)$ is a totally ordered set, $L$ interprets a dense linear order or $L$ interprets a discrete linear order.
+	\end{prop}
+	
+	\begin{prop}[?]
+		If $P=(P,\leq)$ is a poset such that $P\equiv P\sqcup P$ ordered in such a way that the first copy goes before the second copy, and $P$ is model complete, then an analogous construction works (probably).
+	\end{prop}
+	
+	\begin{rem}
+		For the ``circles'' construction to work for a general poset $P$, we certainly need $P$ to be upwards and downwards directed, without least or largest element.
+	\end{rem}
+	
+	\begin{rem}
+		If $P$ is a poset, and $b$ is an element such that $b$ is not the supremum of some two elements, then $(-\infty,b)$ is upwards-directed.
+	\end{rem}
+	
+	\begin{qu}
+		Suppose $P$ has the property that every element is the supremum of some two elements. Does this imply IP (or some other general property)? (Note: atomless Boolean algebras have this property, as do binary ordered trees (growing down). They both have IP and SOP.)
+	\end{qu}
+	
+	\begin{qu}
+		Are atomless Boolean algebras strongly $G$-compact?
+	\end{qu}
+	
+	\begin{rem}
+		In atomless Boolean algebras, we can always eliminate the parameters (up to a definable bijection). From now on, we will assume that there are no parameters.
+	\end{rem}
+	
+	\begin{lem}
+		Let $T$ be the theory of atomless boolean algebras. Let $\varphi(x_1,\ldots,x_n)$ be any formula such that $\varphi(x^1,\ldots,x^n)\proves \bigland_i p(x^i)$ where $p$ is a complete $\emptyset$-type. Then we can assume without loss of generality (up to a $\emptyset$-definable bijection) that $p$ is the type of a partition and $\varphi(x^1,\ldots,x^n)$ is equivalent to a formula of the form $\biglor\bigland x_j^i\cap x_{j'}^{i'}\mathrel{[{=}/{\neq}]}\emptyset$ (i.e. a set of \emph{permissible} intersection tables).
+	\end{lem}
+	\begin{proof}
+		The first part is obvious. The second part is just calculation (and q.e.).
+	\end{proof}
+	
+	\begin{cor}
+		Atomless boolean algebras don't interpret infinite linear orders.
+	\end{cor}
+	\begin{proof}
+		Suppose a formula $\varphi(x,y)$ defines a linear preorder with infinitely many equivalence classes. By $\omega$-categoricity, one of the $\lvert x\rvert$-types intersects infinitely many of these classes, so we can assume without loss of generality that $\varphi$ implies this type, and so, by the preceding lemma, that $x$ is a partition.
+		
+		Now, let $x$ and $y$ be arbitrary partitions of the appropriate size. Let $z$ be a partition of the same size, independent of $x$ and $y$. Then by linearity, either $\models \varphi(x,z)$ or $\models \varphi(z,x)$. But the type of $x$ over $z$ is the same as the type of $z$ over $x$, so in fact $\models\varphi(x,z)\land \varphi(z,x)$. For the same reason, $\models \varphi(z,y)\land \varphi(y,z)$, and hence by transitivity $\models \varphi(x,y)\land \varphi(y,x)$, so $x$ and $y$ are equivalent and, as they were arbitrary, $\varphi$ defines a total relation on its domain, a contradiction.
+	\end{proof}
+	
+	\begin{rem}
+		Suppose atomless boolean algebras interpret a nontrivially directed poset. Let $\varphi(x,y)$ be the formula defining it. Then we can restrict $\varphi$ to a single complete type in such a way that it still defines a nontrivially directed poset.
+	\end{rem}
+	\begin{proof}
+		Note that a (countable) poset is nontrivially directed if and only if it has a cofinal chain. By pigeonhole principle, infinitely many members of the chain lie in a single type, and so we can apply the lemma. 
+	\end{proof}
+	
+	\begin{cor}
+		Suppose $\varphi(x,y)$ defines a nontrivially directed poset on partitions of a given size. Let $x$ be any partition, and let $\bar x$ be the upper bound of all permutations of $x$. Then all row permutations of the intersection table of $x$ and $\bar x$ are permitted by $\varphi$.
+	\end{cor}
+	
+	\begin{rem}
+		Given a poset $P$, for some interval in $P$ to be nontrivially directed, it is necessary that for all $p_0,p_1\in P$ there are some $p,p'$ such that $p_0<p,p'<p_1$ and $p_1$ is the supremum of $p$ and $p'$.
+	\end{rem}
+	
+	\begin{ex}
+		Define a poset $P$ as follows. Let $P_0=\{p_{\textrm{min}},p_{\textrm{max}}\}$, where $p_{\textrm{min}}<p_{\textrm{max}}$. We construct $P_{n+1}$ from $P_n$ by adding, for each pair $p_0,p_1\in P_n$ of distinct points such that $[p_0,p_1]=\{p_0,p_1\}$ in $P_n$, a pair of points $p,p'$ such that $p_0<p,p'<p_1$ and $p$ and $p'$ are incomparable. Then put $P=\lim_n P_n$ with inclusions.
+	\end{ex}
+	
+	\begin{rem}
+		The poset $P$ in the preceding example has the property that no interval is nontrivially directed. In fact, all (open) intervals are isomorphic.
+	\end{rem}
+	
+	\begin{rem}
+		$P$ is a non-distributive lattice.
+	\end{rem}
+	
+	\begin{rem}(?)
+		The poset $P$ has q.e. in the language of bounded lattices (i.e. $\cup,\cap,\leq,0,1$).
+	\end{rem}
+	\begin{proof}
+		Let $\varphi(x,\bar a)$ be quantifier-free formula with parameters $\bar a$, where $\lvert x\rvert=1$. We can assume without loss of generality that $\bar a$ enumerates a sublattice of $P$.
+	\end{proof}
+	
+	\begin{rem}
+		Intervals in $P$ have NIP.
+	\end{rem}
+	
+	\begin{con}[Well-known?]
+		Every NIP unstable theory interprets an infinite linear order. (Note: every unstable weakly $VC$-minimal theory does.)
+	\end{con}
+	
+	\begin{qu}
+		Does an IP+SOP theory intepret an infinite linear order?
+	\end{qu}
+	
+	
+	\begin{qu}
+		For a poset $(P,\leq)$, how do the following properties relate:
+		\begin{enumerate}
+			\item
+			$P$ is directed (both ways?).
+			\item
+			``circles with $P$'' ``work''.
+			\item
+			$P$ has NIP.
+			\item
+			$P$ is nice with respect to $VC$-codimensions.
+		\end{enumerate}
+		What if we only want them up to interpretation?
+	\end{qu}
+	
+	\begin{qu}
+		Suppose $P$ and $Q$ are posets such that their induced circular orders are elementarily equivalent. Does the ``circles'' construction yield elementarily equivalent results?
+	\end{qu}
+	
+	\begin{ex}
+		$\omega\sqcup \omega^*$ yields the same thing as ${\bf Z}$.
+	\end{ex}
+	
+	\section{Adding parameters an $G$-compactness}
+	
+	\begin{ex}
+		Consider an $F=(F,\cdot,+,c)_{c\in {\bf Q}^{\textrm{alg}}}$ algebraically closed field of characteristic $0$ with parameters for all algebraic numbers. Then the Shelah strong types and types over the empty set coincide, but for any transcendental $t$, the types over $\{t\}$ do not coincide with strong types (e.g.\ $\sqrt{t}$ and $-\sqrt{t}$ have different strong types but the same type over $t$).
+	\end{ex}
+	
+	\begin{qu}
+		Suppose $T$ is $G$-compact (KP and L strong types coincide). If we add to the language some parameters for elements of a model of $T$, is the resulting theory still $G$-compact (i.e.\ do the KP and L strong types with parameters coincide)?
+	\end{qu}
+	
+	\begin{prop}
+		Suppose $G$ is a group definable in $\mon$. Let $I$ be a large set (independent of $\mon$). Consider a structure $\mon'=(\mon,I\times G',I,\cdot,\pi)$, where $G'$ is a copy of $G$, the structure on $\mon$ is standard, there is no internal structure on $I\times G'$ or $I$, $\cdot\colon G\times (I\times G')\to (I\times G')$ is the left action $g\cdot(i,g')=(i,gg')$, and $\pi\colon I\times G'\to I$ is the standard projection.
+		
+		Then $\Aut(\mon')=G^I\rtimes(S_I\times \Aut(\mon))$, where the action of $S_I$ is obvious (and fixes $G'$ coordinates and $\mon$), $\Aut(\mon)$ acts on $\mon$ in the usual way and permutes the $G'$ coordinates in the standard manner (fixing $I$), while $G^I$ permutes the $G'$ coordinates by acting on the right coordinatewise (and fixes $I,\mon$). Moreover, $\Autf_L(\mon')=G^I\rtimes(S_I\times \Autf_L(\mon))$, and similarly for Shelah and Kim-Pillay strong automorphism groups.
+		
+		Meanwhile, for any $i_0\in I$ and $g'\in G$ we have that the orbits of $(i_0,g')$ via the action of automorphisms, strong Shelah, Kim-Pillay and Lascar automorphisms respectively are the same as their $G$, $G^0$, $G^{00}$ and $G^{000}$ orbits, respectively. 
+	\end{prop}
+	\begin{proof}
+		The ``meanwhile'' part is standard, as once we add $i_0$ as a parameter, $\{i_0\}\times G'$ is just a principal homogenous space for $G$, which was analysed in detail in \cite{GN08}.
+		
+		For the $\Aut(\mon')$, first note that $\Aut(\mon)$ and $S_I$ act naturally on $\mon'$ (by acting on $\mon$ part and permuting the $G'$ coordinates in $I\times G'$, and by permuting the $I$ coordinates in $I\times G'$, respectively), and the two actions commute. Thus it is easy to see that it is enough to show that $\Aut(\mon'/I\mon)= G^I$. But from the same arguments as in the preceding paragraph, the automorphisms of $\{i_0\}\times G'$ fixing $\mon$ are the same as $G$ acting on the right. Clearly, the actions on $\{i\}\times G'$ and $\{j\}\times G'$ are independent, and each of them must be preserved setwise by $\Aut(\mon'/I\mon)$, so we are done.
+		
+		For the $\Autf_L(\mon')$, notice that clearly $S_I, G^I\leq \Autf_L(\mon')$ (because given a small model $M\preceq \mon'$ such that $M\cap I=I_0$ we have $S_{I\setminus I_0},G^{I\setminus I_0}\leq \Aut(\mon'/M)$), and clearly $\Autf_L(\mon)\leq \Autf_L(\mon')$ (as we have no additional structure on $\mon$), so we have $G^I\rtimes(S_I\times \Autf_L(\mon))\leq \Autf_L(\mon')$. The converse is trivial, because $\Autf_L(\mon')$ acts on $\mon$ by Lascar strong automorphisms.
+		
+		The argument for other two strong automorphism groups is analogous.
+	\end{proof}
+	
+	\begin{ex}
+		Suppose $\mon=({\bf R}^*,{\bf Z}^*)$ (a large real closed field and a monster extension of the additive group of integers, with a constant for $1\in {\bf Z}$), and let $G$ be the universal cover of $SL_2({\bf R})$. Then the theory of $\mon$ is $G$-compact (and, in fact, $\Autf_L(\mon)=\Aut(\mon)$, because it has a pointwise definable model)  and  $G^{00}\neq G^{000}$. Consider $\mon'$ as in the last proposition.
+		
+		By the proposition $\Autf_L(\mon')=\Autf_{KP}(\mon')$, but given any $i_0\in I$ we have that $\Autf_L(\mon'/i_0)\neq \Autf_{KP}(\mon'/i_0)$.
+	\end{ex}
+	
+	\begin{ex}
+		If we take for $\mon$ a real closed field and $G=(S^1)^*$, we will have, as before, $\Autf_L(\mon)=\Aut(\mon)$, whereas $G^0\neq G^{00}$ (because $G/G^0$ is trivial and $G/G^{00}=G({\bf R})=S^1$). Thus by the proposition we obtain a theory which has ${\equiv_{KP}}={\equiv_{Sh}}$, but not so after adding a single parameter.
+	\end{ex}
+	
+	\begin{ex}
+		We can combine the two previous example by taking $\mon$ as in the first example, and $G=\widetilde{\SL_2({\bf R})}^*\times (S^1)^*$, which yields an example with $\Autf_L(\mon')=\Aut(\mon')$, such that the automorphism group and all strong automorphism groups are pairwise distinct over any $i_0\in I$.
+	\end{ex}
+	
+	\section{Generalised topological dynamics}
+	Consider a triple $(\Gamma,B_\Gamma),(X,B_X),(G,B_G)$, where $\Gamma,G$ are discrete groups, $B_X$ is a boolean algebra of set in $X$ (separating points?), while $B_\Gamma$ and $B_G$ are (bi?)invariant boolean algebras of subsets of $\Gamma,G$, respectively (separating points?).
+	
+	Furthermore, let $\Gamma$ act on the left on $X$, and act (on the left?) on $G$, and let $G$ act on $X$ in an $\Gamma$-equivariant manner. Furthermore, suppose that all those actions are definable in the sense that ($B_X,B_G$ are $\Gamma$-invariant and preimages of ``definable'' sets in $X,G$ are ``definable'' in $\Gamma\times X,\Gamma\times G$, respectively (with respect to the product boolean algebra) ).
+	
+	\subsection{Interpretation in the classical context}
+	Hard to say. Should be possible to derive from the ones below, at least in some cases, and that may lead to some general idea.
+	
+	\subsection{Interpretation in the context of definable groups}
+	Here, $\Gamma=G\rtimes \Aut(M)$ (or maybe just $\Aut(M)$ is enough?), $G$ is the definable group, $X$ is an affine copy of $G$, $B_X\cong B_G$ are externally definable sets, while $B_\Gamma=???$ (maybe just definable or externally definable subsets).
+	
+	\subsection{Interpretation in the context of automorphism groups of monster model and invariant equivalence relations on a single type}	
+	Here, $\Gamma=\Aut(\mon)$, $G\leq \Aut(\mon)$ is the stabiliser of a single class of $E$ (the invariant equivalence relation), $X$ is the (set of realisations of) the single type we consider. The Boolean algebras are simply the algebras of ($\mon$-)definable sets.
+	
+	\subsection{The point}
+	When properly formalised, this should allow us to create an abstract version of the flavours of topological dynamics in the flavours given by Newelski, Krupiński and Pillay, possibly simplifying the proofs (by getting rid of the burden of model-theoretic terminology in favour of general dynamical terminology). It should also allow us to painlessly extend these ideas to prove some stronger results, such as those I have talked about with Krzysztof, related to equivalence relations which are only defined on some small type-definable set (smaller than a type), or maybe even $G_\delta$ or something, it's hard to say. Then maybe this machinery will fairly painlessly allow us to apply our theorems in a very general context (mostly removed from model theory).
+	
+	How would it happen? The definability of the actions (defined appropriately) should allow us to simultaneously compactify all the relevant spaces, and yield some nice category in which those are universal.
+	
+	It reminds me somehow of something I recall analysts doing. They have considered spaces where there are two actions of topological groups, one on the left and one on the right. Maybe those are Gelfand pairs? I don't remember. If there is indeed some similarity, then maybe their work can be applied in this context (and/or the other way around). Either way, that would be great.
+	
+	\subsection{Further ideas}
+	Further extensions could go two ways (that I can think of): one would be generalized non-discrete topological dynamics. Then we would have to somehow account for the topology. If it works, it should probably look kind of like what Anand is suggesting for the definable topological group case.
+	
+	The other one would be larger spaces on which $\Gamma$ does not act point transitively, but maybe this is not needed in the first place. Or maybe some further information in case when the action of $G$ is actually $\Gamma$-invariant in some sense (corresponding to the case when $E$ is orbital/$G$ is normal).
+	
+	\section{Equivalence relations coarser than $\KPeq$ and other simplifications}
+	In \cite{KPR}, the authors have applied topological dynamics to prove various theorems about bounded, invariant equivalence relations on the set of realisations of a complete type.
+	
+	The topological dynamics used there appear to be essential: they supply a compact Hausdorff group which we can map onto the Galois group of the theory in such a way that the proofs go through.
+	
+	In this paper (?!) we explain how these results can be achieved without resorting to topological dynamics for relations coarser than the KP strong type, by using the KP Galois group instead of the aforementioned compact group.
+	
+	It is also possible that this method could be used to obtain some stronger results in this case, for example because the KP Galois group is canonical for the theory (does not depend on the choice of the monster model), and is a Polish group in case of countable theories.
+	
+	Moreover, we will show that in a sense, every bounded, invariant equivalence relation on a single type essentially ``lives'' on the type of a small model.
+	
+	\section{Various unsorted results}
+	\begin{prop}
+		If $E$ is a $\biglor$-definable, bounded equivalence relation on a definable set $X$, then $E$ is definable and has finitely many classes.
+	\end{prop}
+	\begin{proof}
+		Choose a set $T$ of representatives of $E$-classes; it will be a small set since $E$ is assumed to be bounded.
+		
+		Each $E$-class is $\biglor$-definable over $T$, as its its complement (since it is the union of the other classes), therefore each $E$-class is definable over $T$. Now, choose for each $t\in T$ a formula $\varphi_t$ defining the class of $t$ over $T$. Then for any $a,b\in X$ we have
+		\[
+		a\mathrel{E}b\iff \models \bigland_{t\in T} (\varphi_t(a)\liff \varphi_t(b))
+		\]
+		so $E$ is $\bigland$-definable over $T$. But it is also $\biglor$-definable, so it is definable over $T$, and since it is invariant over $\emptyset$, it is also definable over $\emptyset$, and a bounded, definable equivalence relation can have only finitely many classes (by compactness).
+	\end{proof}
+	
+	
+	
+	\begin{rem}
+		The $E$ in the previous example does not refine type.
+	\end{rem}
+	\printbibliography
+\end{document}
+
